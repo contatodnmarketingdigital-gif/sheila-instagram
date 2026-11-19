@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Lançamento do Jardim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&family=Great+Vibes&display=swap">
+<style>
+/* Layout: contagem regressiva no topo, as 3 fases, o calendário de 15 dias e, abaixo, cada peça pronta (CPLs, lives, stories). Paleta Jardim ao entardecer. */
+:root{
+  --bg:#F7F1E7; --surface:#FFFCF6; --creme:#EFE4D2; --line:#E2D4BD;
+  --fg:#3E2C22; --muted:#6F6156;
+  --folha:#4E6B4A; --folha-soft:#E3EADF; --terra:#B5733F; --terra-soft:#F4E2D2; --ouro:#A9802F; --ouro-soft:#F6ECD6;
+  --on-dark:#F5EDE0;
+  --serif:'Cormorant Garamond', Georgia, serif; --sans:'Montserrat', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; --script:'Great Vibes', cursive;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1D1712; --surface:#271F19; --creme:#30271F; --line:#3E342A; --fg:#F1E7D8; --muted:#B9AB9A;
+  --folha:#8DB087; --folha-soft:#26301F; --terra:#DB9A66; --terra-soft:#3A2719; --ouro:#D8B567; --ouro-soft:#382D17; --on-dark:#1D1712; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1D1712; --surface:#271F19; --creme:#30271F; --line:#3E342A; --fg:#F1E7D8; --muted:#B9AB9A;
+  --folha:#8DB087; --folha-soft:#26301F; --terra:#DB9A66; --terra-soft:#3A2719; --ouro:#D8B567; --ouro-soft:#382D17; --on-dark:#1D1712; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.6;margin:0}
+.wrap{max-width:1060px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,4.4vw,40px)} h3{font-size:22px}
+p{margin:0}
+a{color:var(--terra)}
+.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--terra)}
+.lead{color:var(--muted);max-width:64ch}
+section{padding-block:52px 4px}
+.sec-head{display:grid;gap:10px;margin-bottom:24px}
+.fill{background:var(--ouro-soft);color:var(--ouro);border-radius:3px;padding:0 3px;font-weight:600}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:99px;background:var(--terra);color:var(--on-dark)}
+.pill.soft{background:var(--creme);color:var(--muted)} .pill.ok{background:var(--folha-soft);color:var(--folha)} .pill.live{background:var(--folha);color:var(--on-dark)}
+.meta{font-size:13px;color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0}
+
+/* HERO */
+.hero{padding-block:44px 16px}
+.hero-grid{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center}
+.count{width:190px;aspect-ratio:4/5;border-radius:999px 999px 14px 14px;background:var(--folha);color:var(--on-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding-top:20px}
+.count .n{font-family:var(--serif);font-size:92px;font-weight:700;line-height:.9}
+.count .l{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;opacity:.9}
+.hero h1{font-size:clamp(36px,6.4vw,64px);color:var(--folha)}
+.hero h1 em{font-style:italic;color:var(--terra);font-weight:500}
+.hero .sub{font-size:17px;color:var(--muted);margin-top:14px;max-width:56ch}
+.hero .back{display:inline-block;margin-top:14px;font-weight:600;font-size:14px}
+.note{margin-top:18px;border-left:2px solid var(--ouro);padding:2px 0 2px 14px;font-size:14px;color:var(--muted)}
+
+/* NARRATIVA */
+.arc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.arc .card b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:6px}
+.arc .card p{font-family:var(--serif);font-size:20px;line-height:1.25}
+.voz{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.voz ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px;font-size:14px}
+.voz h4{margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* FASES */
+.fases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.fase{border-radius:14px;padding:18px;display:grid;gap:8px;align-content:start}
+.fase .q{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.fase h3{font-size:26px}
+.fase ul{margin:0;padding-left:18px;font-size:13.5px;display:grid;gap:3px}
+.fase.d{background:var(--creme)} .fase.j{background:var(--folha);color:var(--on-dark)} .fase.t{background:var(--terra);color:var(--on-dark)}
+.fase.s{background:var(--surface);border:1.5px solid var(--ouro)}
+
+/* PALAVRAS */
+.words{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.word{display:grid;gap:8px}
+.word .w{font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:.04em;color:var(--terra)}
+.word .when{font-size:12px;font-weight:700;color:var(--folha);text-transform:uppercase;letter-spacing:.08em}
+.word ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:3px}
+.msgs{display:grid;gap:8px;margin-top:4px}
+.msg{background:var(--creme);border-radius:4px 12px 12px 12px;padding:10px 12px;font-size:13.5px}
+.msg b{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra)}
+
+/* CALENDARIO */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table.cal{width:100%;border-collapse:collapse;min-width:720px;font-size:14px}
+.cal th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);font-weight:600}
+.cal td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.cal tr:last-child td{border-bottom:0}
+.cal td.dt{white-space:nowrap;width:70px} .cal td.dt b{display:block;font-variant-numeric:tabular-nums} .cal td.dt span{font-size:12px;color:var(--muted)}
+.cal td.fl{width:64px}
+.faltam{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;font-family:var(--serif);font-weight:700;font-size:19px;font-variant-numeric:tabular-nums}
+.fd .faltam{background:var(--creme);color:var(--fg)} .fj .faltam{background:var(--folha);color:var(--on-dark)} .ft .faltam{background:var(--terra);color:var(--on-dark)}
+.cal td.pw{font-weight:700;color:var(--terra);font-size:12px;letter-spacing:.06em;white-space:nowrap}
+.live{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;background:var(--folha-soft);color:var(--folha);border-radius:99px;padding:1px 8px}
+.end-row td{background:var(--ouro-soft)}
+
+/* ROTEIROS */
+.rots{display:grid;gap:18px}
+.rot{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:10px;min-width:0}
+.rot header{display:flex;flex-wrap:wrap;gap:6px}
+.cenas{display:grid}
+.cena{display:grid;grid-template-columns:110px minmax(0,1.5fr) minmax(0,1fr);gap:14px;padding:10px 0;border-top:1px solid var(--line)}
+.cena .cn{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--terra);padding-top:3px}
+.cena .cf{font-family:var(--serif);font-size:19px;line-height:1.35}
+.cena .ci{font-size:13px;color:var(--muted)} .cena .ci b{color:var(--fg);font-weight:600}
+.leg{background:var(--creme);border-radius:10px;padding:12px 14px;font-size:14px} .leg b{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra)}
+.tags{color:var(--folha);font-size:13px;margin-top:6px}
+.extras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.extras ol,.extras ul{margin:6px 0 0;padding-left:18px;font-size:13.5px;display:grid;gap:4px}
+.ja{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.ja .card b{display:block}
+
+/* LIVES */
+.lives{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.lv{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:8px;align-content:start;min-width:0}
+.lv ol{margin:0;padding-left:0;list-style:none;display:grid;gap:8px;font-size:13.5px}
+.lv ol b{display:block;font-size:11px;color:var(--terra);letter-spacing:.06em}
+
+/* STORIES */
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.cap{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.ch{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.cd{font-size:12px;font-weight:700;color:var(--on-dark);background:var(--folha);border-radius:99px;padding:1px 8px;font-variant-numeric:tabular-nums}
+.cap ul{margin:0;padding-left:18px;font-size:13.5px;display:grid;gap:3px}
+.gancho{font-size:13px;color:var(--terra);font-style:italic}
+
+/* LISTAS FINAIS */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cols ul{margin:6px 0 0;padding-left:18px;font-size:14px;display:grid;gap:4px}
+.cols h3{font-size:20px}
+.checks{list-style:none;padding:0!important}
+.checks li::before{content:"✓ ";color:var(--folha);font-weight:700}
+footer{padding-block:44px 52px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:end}
+.sign{font-family:var(--script);font-size:30px;color:var(--terra);line-height:1}
+
+@media (max-width:900px){
+  .arc,.fases{grid-template-columns:1fr 1fr}
+  .lives,.caps,.extras,.ja{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){
+  .hero-grid{grid-template-columns:1fr;gap:18px}
+  .count{width:150px}.count .n{font-size:72px}
+  .arc,.fases,.words,.voz,.lives,.caps,.extras,.ja,.cols{grid-template-columns:1fr}
+  .cena{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-grid">
+    <div class="count" aria-label="Faltam 40 dias para o ano acabar, em 22 de novembro"><span class="n">40</span><span class="l">dias para<br>o ano acabar</span></div>
+    <div>
+      <p class="kicker">Lançamento da turma fundadora · 22/11 a 06/12</p>
+      <h1>Não termine o ano <em>sem se aproximar de Deus</em></h1>
+      <p class="sub">15 dias de conteúdo, lives e stories contando uma história só: ainda dá tempo. Em 21 desses dias, a gente caminha junto. O fim é a turma Acesso Diário ao Jardim, por um valor simbólico de R$ 47.</p>
+      <a class="back" href="./">← Voltar à estratégia do Jardim</a>
+      <p class="note">As datas são sugestão. Se a turma mudar de dia, o calendário anda junto: o que importa é a ordem das fases e a contagem regressiva.</p>
+    </div>
+  </div>
+</header>
+
+<section id="narrativa">
+  <div class="sec-head">
+    <p class="kicker">A grande ideia</p>
+    <h2>A história que ela conta nos 15 dias</h2>
+    <p class="lead">Todo post, live e story é um capítulo da mesma história. A pessoa que acompanha precisa sentir que algo está acontecendo, e que dá tempo de entrar.</p>
+  </div>
+  <div class="arc">
+    <div class="card"><b>A promessa</b><p>“Em janeiro você prometeu a Deus que este ano seria diferente.”</p></div>
+    <div class="card"><b>O problema</b><p>“Não foi falta de fé. Fé sem horário vira culpa, e no dia 8 a gente larga.”</p></div>
+    <div class="card"><b>A virada</b><p>“Faltam 40 dias. Quarenta dias ainda é tempo.”</p></div>
+    <div class="card"><b>O convite</b><p>“Em 21 deles, a gente caminha junto. Você termina o ano no Jardim.”</p></div>
+  </div>
+  <div class="voz">
+    <div class="card"><h4>Falar assim</h4><ul><li>“ainda dá tempo”, “faltam X dias”</li><li>“o Jardim ainda está aberto”</li><li>“sem cobrança”, “1 minuto também é encontro”</li><li>“turma fundadora”, “valor simbólico”</li><li>“quem acompanha os stories fica sabendo primeiro”</li></ul></div>
+    <div class="card"><h4>Evitar</h4><ul><li>medo ou culpa sem saída (“Deus vai cobrar”)</li><li>“promoção”, “desconto”, “última chance da sua vida”</li><li>escassez inventada (“últimas vagas” sem limite real)</li><li>prometer resultado espiritual (“em 21 dias você muda”)</li></ul></div>
+  </div>
+</section>
+
+<section id="fases">
+  <div class="sec-head">
+    <p class="kicker">As fases</p>
+    <h2>Três fases e um começo</h2>
+  </div>
+  <div class="fases">
+    <div class="fase d"><span class="q">22 a 25/11 · 4 dias</span><h3>Despertar</h3><ul><li>Lança a contagem: faltam 40 dias.</li><li>Conta a história dela e mostra o problema.</li><li>Reels com METAMORFOSE: o guia chega dia 26.</li></ul></div>
+    <div class="fase j"><span class="q">26 a 30/11 · 5 dias</span><h3>Jardim aberto</h3><ul><li>O guia sai e circula.</li><li>3 CPLs e a 1ª live.</li><li>No fim, a lista: comenta JARDIM.</li></ul></div>
+    <div class="fase t"><span class="q">01 a 06/12 · 6 dias</span><h3>Turma aberta</h3><ul><li>Live de abertura e link no ar.</li><li>Prova, dúvidas e a 3ª live.</li><li>Fecha domingo, 21h.</li></ul></div>
+    <div class="fase s"><span class="q">07/12</span><h3>Começa</h3><ul><li>6h: primeiro áudio da turma.</li><li>21 dias, até 27/12.</li><li>Quem ficou de fora: turma de janeiro.</li></ul></div>
+  </div>
+</section>
+
+<section id="palavras">
+  <div class="sec-head">
+    <p class="kicker">Palavras-chave</p>
+    <h2>Duas palavras, uma de cada vez</h2>
+    <p class="lead">Cada post tem uma chamada só. Até 29/11 a palavra é METAMORFOSE, que entrega o guia. A partir de 30/11 é JARDIM, que coloca na lista e depois manda o link da turma. No ManyChat, são duas automações.</p>
+  </div>
+  <div class="words">
+    <div class="card word"><span class="w">METAMORFOSE</span><span class="when">22 a 29/11 · e sempre, para o guia</span><ul><li>Comentário em post ou Reels, e resposta de story.</li><li>Entrega o Guia De volta ao Jardim (fluxo que já está no checklist).</li><li>Quem comentar antes de 26/11 recebe o guia no dia 26.</li></ul>
+      <div class="msgs"><div class="msg"><b>Antes de 26/11 · direct automático</b>Que alegria! 🌿 O guia sai na quinta, dia 26, às 6h. Me passa o seu WhatsApp com DDD que eu te mando assim que sair.</div></div></div>
+    <div class="card word"><span class="w">JARDIM</span><span class="when">30/11 a 06/12</span><ul><li>Comentário, resposta de story e chat das lives.</li><li>Até 30/11: entra na lista e fica sabendo primeiro.</li><li>De 1º a 6/12: recebe o link da turma na Greenn.</li></ul>
+      <div class="msgs"><div class="msg"><b>30/11 · lista</b>Anotei você! 🌿 Amanhã, terça, às 20h, eu abro a turma fundadora ao vivo, e você recebe o link antes de todo mundo.</div><div class="msg"><b>01 a 06/12 · link</b>Aqui está o link da turma fundadora do Acesso Diário ao Jardim: <span class="fill">[link Greenn]</span>. São 21 dias juntas, começando segunda, 7/12, às 6h. As inscrições fecham domingo, às 21h. 💛</div></div></div>
+  </div>
+</section>
+
+<section id="calendario">
+  <div class="sec-head">
+    <p class="kicker">O calendário</p>
+    <h2>Os 15 dias, um por linha</h2>
+    <p class="lead">O número redondo é quantos dias faltam para o ano acabar: ele vai em todo story de abertura do dia. Quarta é dia de consagração: sem gravação, só um story leve.</p>
+  </div>
+  <div class="scroll">
+    <table class="cal">
+      <thead><tr><th>Dia</th><th>Faltam</th><th>Feed e lives</th><th>Stories</th><th>Chamada</th></tr></thead>
+      <tbody><tr class="fd"><td class="dt"><b>22/11</b><span>dom</span></td><td class="fl"><span class="faltam">40</span></td><td>Trend com texto: “Faltam 40 dias” </td><td>Cap. 1 · Faltam 40 dias</td><td class="pw">seguir</td></tr><tr class="fd"><td class="dt"><b>23/11</b><span>seg</span></td><td class="fl"><span class="faltam">39</span></td><td>Reels “Marta ou Maria?” (já roteirizado) </td><td>Cap. 2 · O banco do ônibus</td><td class="pw">METAMORFOSE</td></tr><tr class="fd"><td class="dt"><b>24/11</b><span>ter</span></td><td class="fl"><span class="faltam">38</span></td><td>Reels “15 minutos em 3 passos” (já roteirizado) </td><td>Cap. 3 · O resultado da enquete</td><td class="pw">METAMORFOSE</td></tr><tr class="fd"><td class="dt"><b>25/11</b><span>qua</span></td><td class="fl"><span class="faltam">37</span></td><td>Sem post (consagração) </td><td>Cap. 4 · Dia de consagração</td><td class="pw"></td></tr><tr class="fj"><td class="dt"><b>26/11</b><span>qui</span></td><td class="fl"><span class="faltam">36</span></td><td>CPL 1 · O ano que você prometeu a Deus </td><td>Cap. 5 · O guia saiu</td><td class="pw">METAMORFOSE</td></tr><tr class="fj"><td class="dt"><b>27/11</b><span>sex</span></td><td class="fl"><span class="faltam">35</span></td><td>Sem post (dia da live) <span class="live">Live 1 · 20h</span></td><td>Cap. 6 · Hoje tem live</td><td class="pw">METAMORFOSE</td></tr><tr class="fj"><td class="dt"><b>28/11</b><span>sáb</span></td><td class="fl"><span class="faltam">34</span></td><td>CPL 2 · O que acontece no dia 8 </td><td>Cap. 7 · Quem já começou</td><td class="pw">METAMORFOSE</td></tr><tr class="fj"><td class="dt"><b>29/11</b><span>dom</span></td><td class="fl"><span class="faltam">33</span></td><td>Carrossel “Ainda dá tempo” </td><td>Cap. 8 · O dia 8</td><td class="pw">salvar</td></tr><tr class="fj"><td class="dt"><b>30/11</b><span>seg</span></td><td class="fl"><span class="faltam">32</span></td><td>CPL 3 · Um dia no Jardim </td><td>Cap. 9 · Bastidores</td><td class="pw">JARDIM</td></tr><tr class="ft"><td class="dt"><b>01/12</b><span>ter</span></td><td class="fl"><span class="faltam">31</span></td><td>Post estático: a turma abriu <span class="live">Live 2 · 20h · abertura</span></td><td>Cap. 10 · Abriu</td><td class="pw">JARDIM</td></tr><tr class="ft"><td class="dt"><b>02/12</b><span>qua</span></td><td class="fl"><span class="faltam">30</span></td><td>Sem post (consagração) </td><td>Cap. 11 · Consagração</td><td class="pw">JARDIM</td></tr><tr class="ft"><td class="dt"><b>03/12</b><span>qui</span></td><td class="fl"><span class="faltam">29</span></td><td>Reels “Ela não largou” (react) </td><td>Cap. 12 · A prova</td><td class="pw">JARDIM</td></tr><tr class="ft"><td class="dt"><b>04/12</b><span>sex</span></td><td class="fl"><span class="faltam">28</span></td><td>Sem post (dia da live) <span class="live">Live 3 · 20h · dúvidas</span></td><td>Cap. 13 · Perguntas</td><td class="pw">JARDIM</td></tr><tr class="ft"><td class="dt"><b>05/12</b><span>sáb</span></td><td class="fl"><span class="faltam">27</span></td><td>Reels “E se eu não conseguir todo dia?” </td><td>Cap. 14 · Por que 21 dias</td><td class="pw">JARDIM</td></tr><tr class="ft"><td class="dt"><b>06/12</b><span>dom</span></td><td class="fl"><span class="faltam">26</span></td><td>Sem post (stories o dia todo) </td><td>Cap. 15 · Último dia, fecha 21h</td><td class="pw">JARDIM</td></tr><tr class="end-row"><td class="dt"><b>07/12</b><span>seg</span></td><td class="fl"><span class="faltam" style="background:var(--ouro);color:var(--on-dark)">25</span></td><td>Turma começa às 6h. Post: “A turma começou”.</td><td>Epílogo: primeiro áudio + aviso da turma de janeiro</td><td class="pw"></td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="sec-head">
+    <p class="kicker">Os vídeos</p>
+    <h2>CPLs e Reels, cena a cena</h2>
+    <p class="lead">Os CPLs são uma série de 3 vídeos que levam a pessoa do problema à vontade de entrar: a oportunidade (ainda dá tempo), o método (por que a gente larga e o que faz continuar) e a experiência (como vai ser na prática). Todos passaram no verificador de roteiro com nota 100.</p>
+  </div>
+  <div class="ja">
+    <div class="card"><span class="pill soft">já roteirizado · 20/11</span><b style="margin-top:6px">“Adão tinha trabalho”</b><span class="meta">Vídeo narrado · aquecimento antes da janela</span></div>
+    <div class="card"><span class="pill soft">já roteirizado · 23/11</span><b style="margin-top:6px">“Marta ou Maria?”</b><span class="meta">Tela dividida · METAMORFOSE</span></div>
+    <div class="card"><span class="pill soft">já roteirizado · 24/11</span><b style="margin-top:6px">“15 minutos em 3 passos”</b><span class="meta">Lista · METAMORFOSE</span></div>
+  </div>
+  <div class="rots"><article class="rot" id="cpl1">
+  <header><span class="pill">qui 26/11</span><span class="pill soft">Vídeo narrado</span><span class="pill ok">Nota 100 no verificador</span></header>
+  <h3>CPL 1 · A oportunidade: O ano que você prometeu a Deus</h3>
+  <p class="meta">Objetivo: Guia De volta ao Jardim (grátis) e depois a turma de 21 dias · Palavra-chave: <b>METAMORFOSE</b> · cerca de 30 s</p>
+  <div class="cenas"><div class="cena"><div class="cn">Gancho</div><div class="cf">O que você prometeu a Deus em janeiro?</div><div class="ci"><b>Tela:</b> Faltam 40 dias para o ano acabar<br><b>Imagem:</b> Seu dedo correndo um calendário de parede até o dia 31</div></div><div class="cena"><div class="cn">Tensão</div><div class="cf">Ler a Bíblia todo dia. Orar antes de pegar o celular. Chegou novembro e a promessa ficou na gaveta.</div><div class="ci"><b>Tela:</b> A promessa ficou na gaveta<br><b>Imagem:</b> Agenda aberta em janeiro com a anotação riscada; gaveta fechando</div></div><div class="cena"><div class="cn">Revelação</div><div class="cf">Não foi falta de fé. Foi falta de lugar no seu dia. <span class="fill">[pausa]</span> Fé sem horário vira culpa.</div><div class="ci"><b>Tela:</b> Fé sem horário vira culpa<br><b>Imagem:</b> Seu rosto de perto, luz da janela</div></div><div class="cena"><div class="cn">Lição</div><div class="cf">E quarenta dias ainda é tempo. Foi o tempo que Jesus passou no deserto antes de começar.</div><div class="ci"><b>Tela:</b> 40 dias ainda é tempo<br><b>Imagem:</b> Bíblia aberta em Mateus 4, sua mão marcando o versículo 2</div></div><div class="cena"><div class="cn">CTA</div><div class="cf">Eu fiz um guia de 7 dias para você começar hoje, no tempo que você tem. Comenta METAMORFOSE que eu te mando.</div><div class="ci"><b>Tela:</b> Comenta METAMORFOSE<br><b>Imagem:</b> Você sorrindo, apontando para os comentários</div></div></div>
+  <div class="leg"><b>Legenda</b><p>Faltam 40 dias para o ano acabar, e quarenta dias ainda é tempo de voltar para perto de Deus (Mateus 4:2). Não foi falta de fé: foi falta de lugar no dia.<br><br>Comenta METAMORFOSE que eu te mando o Guia De volta ao Jardim, de graça.</p><p class="tags">#devocional #mulherescristas #biblia #intimidadecomdeus #devocionaldiario #mulherdedeus #fe</p></div>
+</article><article class="rot" id="cpl2">
+  <header><span class="pill">sáb 28/11</span><span class="pill soft">Comparativo</span><span class="pill ok">Nota 100 no verificador</span></header>
+  <h3>CPL 2 · O método: O que acontece no dia 8</h3>
+  <p class="meta">Objetivo: Guia De volta ao Jardim (grátis) e depois a turma de 21 dias · Palavra-chave: <b>METAMORFOSE</b> · cerca de 30 s</p>
+  <div class="cenas"><div class="cena"><div class="cn">Gancho</div><div class="cf">Você também larga o devocional no dia 8?</div><div class="ci"><b>Tela:</b> Por que você larga no dia 8<br><b>Imagem:</b> Calendário com 7 dias riscados e o 8 em branco</div></div><div class="cena"><div class="cn">Quem para</div><div class="cf">Quem para começa animada, faz sete dias perfeitos e, no primeiro dia corrido, desiste e sente culpa.</div><div class="ci"><b>Tela:</b> Quem para: tudo ou nada<br><b>Imagem:</b> Tela dividida, lado esquerdo: você suspirando, Bíblia fechada</div></div><div class="cena"><div class="cn">Quem continua</div><div class="cf">Quem continua tem horário marcado, aceita o encontro de um minuto e não caminha sozinha.</div><div class="ci"><b>Tela:</b> Quem continua: horário, 1 minuto, companhia<br><b>Imagem:</b> Lado direito: você com café e celular, sorrindo</div></div><div class="cena"><div class="cn">Revelação</div><div class="cf">Constância não é força de vontade. <span class="fill">[pausa]</span> É ter alguém que te lembre.</div><div class="ci"><b>Tela:</b> Constância é ter quem te lembre<br><b>Imagem:</b> Seu rosto de perto, tom de conversa</div></div><div class="cena"><div class="cn">Lição</div><div class="cf">Então começa pelos sete dias. No dia 8, eu não quero que você esteja sozinha.</div><div class="ci"><b>Tela:</b> No dia 8, não fique sozinha<br><b>Imagem:</b> Você abrindo o guia no celular</div></div><div class="cena"><div class="cn">CTA</div><div class="cf">Comenta METAMORFOSE que eu te mando o guia de 7 dias.</div><div class="ci"><b>Tela:</b> Comenta METAMORFOSE<br><b>Imagem:</b> Você apontando para baixo</div></div></div>
+  <div class="leg"><b>Legenda</b><p>Quem continua com Deus não tem mais força de vontade: tem horário marcado, aceita o encontro de 1 minuto e não caminha sozinha.<br><br>Comenta METAMORFOSE que eu te mando o Guia De volta ao Jardim.</p><p class="tags">#devocional #mulherescristas #biblia #intimidadecomdeus #devocionaldiario #mulherdedeus #fe</p></div>
+</article><article class="rot" id="cpl3">
+  <header><span class="pill">seg 30/11</span><span class="pill soft">Novelinha da rotina</span><span class="pill ok">Nota 100 no verificador</span></header>
+  <h3>CPL 3 · A experiência: Um dia no Jardim</h3>
+  <p class="meta">Objetivo: Turma fundadora do Acesso Diário ao Jardim (R$ 47) · Palavra-chave: <b>JARDIM</b> · cerca de 30 s</p>
+  <div class="cenas"><div class="cena"><div class="cn">Gancho</div><div class="cf">Assim vai ser o seu dia no Jardim.</div><div class="ci"><b>Tela:</b> Um dia no Jardim, de verdade<br><b>Imagem:</b> Despertador marcando 6h, celular vibrando na mesa</div></div><div class="cena"><div class="cn">6h</div><div class="cf">Às seis da manhã chega um áudio meu de cinco minutos. Você ouve enquanto passa o café.</div><div class="ci"><b>Tela:</b> 6h · áudio de 5 minutos<br><b>Imagem:</b> Você de fone, coando café, celular com o áudio tocando</div></div><div class="cena"><div class="cn">Meio do dia</div><div class="cf">No meio da correria, a frase do dia te lembra para quem você vive.</div><div class="ci"><b>Tela:</b> A frase do dia no bolso<br><b>Imagem:</b> Cartão da frase na tela do celular, no balcão do trabalho</div></div><div class="cena"><div class="cn">19h</div><div class="cf">Às sete da noite, se o dia não deixou, eu te lembro: o Jardim ainda está aberto.</div><div class="ci"><b>Tela:</b> 19h · o Jardim ainda está aberto<br><b>Imagem:</b> Fim de tarde na janela, luz dourada</div></div><div class="cena"><div class="cn">Toda semana</div><div class="cf">E toda semana a gente se encontra ao vivo, para orar junto.</div><div class="ci"><b>Tela:</b> Encontro ao vivo toda semana<br><b>Imagem:</b> Tela de chamada com várias mulheres (ou você acenando para a câmera)</div></div><div class="cena"><div class="cn">CTA</div><div class="cf">A turma abre dia primeiro e começa dia sete. Comenta JARDIM que eu te aviso primeiro.</div><div class="ci"><b>Tela:</b> Comenta JARDIM<br><b>Imagem:</b> Você sorrindo, com a Bíblia no colo</div></div></div>
+  <div class="leg"><b>Legenda</b><p>Um dia no Jardim: áudio às 6h, a frase do dia no bolso, lembrete às 19h e encontro ao vivo toda semana. São 21 dias juntas, começando em 7 de dezembro.<br><br>Comenta JARDIM que eu te coloco na lista e te aviso primeiro quando abrir.</p><p class="tags">#devocional #mulherescristas #biblia #intimidadecomdeus #devocionaldiario #mulherdedeus #fe</p></div>
+</article><article class="rot" id="prova">
+  <header><span class="pill">qui 03/12</span><span class="pill soft">React</span><span class="pill ok">Nota 100 no verificador</span></header>
+  <h3>Carrinho · A prova: Ela não largou</h3>
+  <p class="meta">Objetivo: Turma fundadora do Acesso Diário ao Jardim (R$ 47) · Palavra-chave: <b>JARDIM</b> · cerca de 30 s</p>
+  <div class="cenas"><div class="cena"><div class="cn">Gancho</div><div class="cf">Olha a mensagem que eu recebi ontem.</div><div class="ci"><b>Tela:</b> Ela fez os 7 dias do guia<br><b>Imagem:</b> Você ao lado do print do depoimento (fundo com o print)</div></div><div class="cena"><div class="cn">O depoimento</div><div class="cf"><span class="fill">[Leia o trecho real do depoimento, com autorização da pessoa]</span> Eu achei que ia largar no terceiro dia, como sempre.</div><div class="ci"><b>Tela:</b> <span class="fill">[frase curta do depoimento]</span><br><b>Imagem:</b> Print em destaque, você lendo com a mão no peito</div></div><div class="cena"><div class="cn">A reação</div><div class="cf">É isso que eu mais queria ouvir. Não foi perfeito. Mas ela não largou.</div><div class="ci"><b>Tela:</b> Não foi perfeito. Ela não largou.<br><b>Imagem:</b> Seu rosto emocionado, olhando para a câmera</div></div><div class="cena"><div class="cn">A ponte</div><div class="cf">E é isso que a gente vai viver juntas nos próximos vinte e um dias. Com lembrete todo dia e sem cobrança.</div><div class="ci"><b>Tela:</b> 21 dias juntas · começa dia 7<br><b>Imagem:</b> Você com o planner e o celular</div></div><div class="cena"><div class="cn">CTA</div><div class="cf">As inscrições vão até domingo. Comenta JARDIM que eu te mando o link.</div><div class="ci"><b>Tela:</b> Comenta JARDIM<br><b>Imagem:</b> Você apontando para os comentários</div></div></div>
+  <div class="leg"><b>Legenda</b><p>Ela fez os 7 dias do guia e não largou. Não foi perfeito, e não precisa ser. A turma fundadora do Acesso Diário ao Jardim começa em 7 de dezembro.<br><br>Comenta JARDIM que eu te mando o link da turma.</p><p class="tags">#devocional #mulherescristas #biblia #intimidadecomdeus #devocionaldiario #mulherdedeus #fe</p></div>
+</article><article class="rot" id="objecao">
+  <header><span class="pill">sáb 05/12</span><span class="pill soft">Conversa</span><span class="pill ok">Nota 100 no verificador</span></header>
+  <h3>Carrinho · As dúvidas: E se eu não conseguir todo dia?</h3>
+  <p class="meta">Objetivo: Turma fundadora do Acesso Diário ao Jardim (R$ 47) · Palavra-chave: <b>JARDIM</b> · cerca de 30 s</p>
+  <div class="cenas"><div class="cena"><div class="cn">Gancho</div><div class="cf"><span class="fill">[Amiga]</span> Sheila, e se eu não conseguir todo dia?</div><div class="ci"><b>Tela:</b> As 4 dúvidas sobre a turma<br><b>Imagem:</b> Você de amiga (óculos ou lenço), olhando para o lado</div></div><div class="cena"><div class="cn">Um minuto</div><div class="cf"><span class="fill">[Sheila]</span> Aí você faz a porta de um minuto. Uma frase e uma oração já é encontro.</div><div class="ci"><b>Tela:</b> 1 minuto também é encontro<br><b>Imagem:</b> Você de Sheila, respondendo de frente</div></div><div class="cena"><div class="cn">Bíblia</div><div class="cf"><span class="fill">[Amiga]</span> Mas eu não entendo muito a Bíblia. <span class="fill">[Sheila]</span> Tem uma aula só para isso, de quinze minutos.</div><div class="ci"><b>Tela:</b> Aula bônus: ler a Bíblia sozinha<br><b>Imagem:</b> Corte entre as duas; na Sheila, a Bíblia aberta</div></div><div class="cena"><div class="cn">Ao vivo</div><div class="cf"><span class="fill">[Amiga]</span> E se eu perder o encontro ao vivo? <span class="fill">[Sheila]</span> Fica gravado na área da turma.</div><div class="ci"><b>Tela:</b> Os encontros ficam gravados<br><b>Imagem:</b> Corte entre as duas; tela da área de membros</div></div><div class="cena"><div class="cn">Preço</div><div class="cf"><span class="fill">[Amiga]</span> E quanto é? <span class="fill">[Sheila]</span> Quarenta e sete reais, e você tem sete dias de garantia.</div><div class="ci"><b>Tela:</b> R$ 47 · 7 dias de garantia<br><b>Imagem:</b> Selo de R$ 47 por cima da Sheila</div></div><div class="cena"><div class="cn">CTA</div><div class="cf"><span class="fill">[Sheila]</span> Fecha domingo, às nove da noite. Comenta JARDIM que eu te mando o link.</div><div class="ci"><b>Tela:</b> Comenta JARDIM<br><b>Imagem:</b> A Sheila sorrindo, apontando para baixo</div></div></div>
+  <div class="leg"><b>Legenda</b><p>As 4 dúvidas que mais recebo sobre a turma: e se eu não conseguir todo dia, se eu não entendo a Bíblia, se eu perder o ao vivo e quanto custa. A turma fundadora fecha domingo, às 21h.<br><br>Comenta JARDIM que eu te mando o link.</p><p class="tags">#devocional #mulherescristas #biblia #intimidadecomdeus #devocionaldiario #mulherdedeus #fe</p></div>
+</article></div>
+  <div class="extras" style="margin-top:18px">
+    <div class="card"><span class="pill">dom 22/11</span><h3 style="margin-top:8px">Trend com texto · Faltam 40 dias</h3><p class="meta">10 a 15 s, áudio em alta, sem fala. Chamada: seguir.</p><ol><li><b>Tela:</b> “Faltam 40 dias para 2026 acabar” · você olhando o calendário</li><li><b>Tela:</b> “e aquela promessa de ler a Bíblia todo dia…” · Bíblia fechada na mesa</li><li><b>Tela:</b> “ainda dá tempo 🌿” · você abrindo a Bíblia, sorrindo</li></ol><p class="meta" style="margin-top:8px"><b>Legenda:</b> Faltam 40 dias, e quarenta dias ainda é tempo. Segue aqui: nos próximos dias eu vou te ajudar a voltar para perto de Deus.</p></div>
+    <div class="card"><span class="pill">dom 29/11</span><h3 style="margin-top:8px">Carrossel · Ainda dá tempo</h3><p class="meta">7 lâminas. Chamada: salvar e mandar para uma amiga.</p><ol><li>Capa com o seu rosto: “Ainda dá tempo de terminar o ano perto de Deus”</li><li>“Faltam 33 dias para 2026 acabar.”</li><li>“Não precisa de um ano perfeito. Precisa de um horário possível.”</li><li>“10 minutos de manhã, 5 no almoço ou 1 à noite: todos contam.”</li><li>“Perdeu um dia? Segue de onde parou. Deus procura o encontro.” (Gn 3:9)</li><li>“Quem caminha junto não larga fácil.” (Ec 4:9-10)</li><li>“Salva para lembrar e manda para uma amiga que também quer voltar.”</li></ol></div>
+    <div class="card"><span class="pill">ter 01/12</span><h3 style="margin-top:8px">Post estático · A turma abriu</h3><p class="meta">Foto sua com a Bíblia, texto em primeira pessoa. Chamada: pergunta.</p><p style="margin-top:8px;font-family:var(--serif);font-size:19px;line-height:1.3">“Eu não queria que você terminasse o ano com a mesma culpa de janeiro. Por isso eu abri a turma fundadora: 21 dias juntas, começando segunda, 7/12.”</p><p class="meta" style="margin-top:8px"><b>Legenda termina com:</b> Você vem? Responde 🌿 se sim ou 🤍 se ainda está pensando.</p></div>
+  </div>
+</section>
+
+<section id="lives">
+  <div class="sec-head">
+    <p class="kicker">As lives</p>
+    <h2>Três encontros ao vivo, nunca na quarta</h2>
+    <p class="lead">40 minutos cada, às 20h. Avise com figurinha de lembrete nos stories desde a véspera. Depois, salve a gravação no perfil.</p>
+  </div>
+  <div class="lives"><div class="lv"><span class="pill live">Live 1 · sex 27/11 · 20h</span><h3>Os 3 ladrões do seu encontro com Deus</h3><p class="meta">Ensinar, criar vínculo e levar ao guia (METAMORFOSE).</p><ol><li><b>0–5 min</b> Acolhida e oração curta. “De onde você está assistindo?” Espere as primeiras chegarem.</li><li><b>5–25 min</b> Os 3 ladrões, um de cada vez, com um versículo e um exemplo da rotina: 1) o tudo ou nada (Marta, Lc 10:41-42); 2) o celular antes da Palavra (Sl 5:3); 3) caminhar sozinha (Ec 4:9-10).</li><li><b>25–32 min</b> Prática ao vivo: a porta de 1 minuto, todas juntas. Leia a frase e ore.</li><li><b>32–37 min</b> Convite: “Quem ainda não tem o guia, comenta METAMORFOSE aqui que eu te mando.” Anuncie: “Terça, às 20h, tenho uma novidade para quem não quer largar.”</li><li><b>37–40 min</b> Oração final pelas mulheres que estão assistindo.</li></ol></div><div class="lv"><span class="pill live">Live 2 · ter 01/12 · 20h</span><h3>Abertura da turma fundadora</h3><p class="meta">Abrir as inscrições ao vivo.</p><ol><li><b>0–5 min</b> Acolhida. Leia 2 ou 3 mensagens de quem fez o guia (com autorização).</li><li><b>5–15 min</b> A grande ideia: “Faltam 31 dias para o ano acabar. Eu não quero que você termine o ano longe de Deus.” O dia 8: por que a gente larga.</li><li><b>15–25 min</b> A turma: 21 dias, áudio às 6h, lembrete às 19h, 3 encontros ao vivo, planner e aula bônus. Mostre o planner e a área de membros na tela.</li><li><b>25–30 min</b> Investimento: R$ 47 na turma fundadora, 7 dias de garantia. “Escreve JARDIM no chat que a gente te manda o link no direct.” Link também no comentário fixado. <span class="fill">[Bônus para quem entrar durante a live: sugestão, decidir]</span></li><li><b>30–40 min</b> Perguntas e oração final.</li></ol></div><div class="lv"><span class="pill live">Live 3 · sex 04/12 · 20h</span><h3>Perguntas e oração</h3><p class="meta">Tirar as dúvidas que seguram a compra.</p><ol><li><b>0–5 min</b> Acolhida. Peça para quem já entrou escrever “Estou no Jardim” no chat.</li><li><b>5–25 min</b> Dúvidas da caixinha: “e se eu não conseguir todo dia”, “não entendo a Bíblia”, “e se eu perder o ao vivo”, “como entro no grupo”.</li><li><b>25–30 min</b> Mostre a área de membros por dentro. “Fecha domingo, às 21h. Escreve JARDIM no chat.”</li><li><b>30–40 min</b> Oração pelas famílias e pelo fim de ano de cada uma.</li></ol></div></div>
+</section>
+
+<section id="stories">
+  <div class="sec-head">
+    <p class="kicker">Os stories</p>
+    <h2>Uma novela em 15 capítulos</h2>
+    <p class="lead">Um capítulo por dia, cada um terminando com um gancho para o dia seguinte. Abra sempre com o número de dias que faltam. Nesses 15 dias a oferta aparece mais vezes do que na rotina normal, porque é lançamento: quem acompanha os stories fica sabendo primeiro.</p>
+  </div>
+  <div class="caps"><div class="cap"><div class="ch"><span class="cd">22/11</span><b>Cap. 1 · Faltam 40 dias</b></div><ul><li>Foto do calendário: “Faltam 40 dias para 2026 acabar.”</li><li>Você falando: “Em janeiro eu prometi a Deus <span class="fill">[o que você prometeu, de verdade]</span>. E você, o que prometeu?”</li><li>Caixinha: “O que você queria ter vivido com Deus este ano?”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã eu te conto onde começou o meu encontro diário com Deus.”</p></div><div class="cap"><div class="ch"><span class="cd">23/11</span><b>Cap. 2 · O banco do ônibus</b></div><ul><li>Foto antiga ou janela de ônibus: “Meu jardim era um banco de ônibus.”</li><li>A história em 3 stories, com os seus fatos reais: <span class="fill">[onde trabalhava, que horas saía, o que lia]</span>.</li><li>Enquete: “Você tem um horário fixo com Deus?” Sim / Ainda não.</li></ul><p class="gancho">Gancho para amanhã: “Amanhã eu mostro o resultado e te conto o que ele revela.”</p></div><div class="cap"><div class="ch"><span class="cd">24/11</span><b>Cap. 3 · O resultado da enquete</b></div><ul><li>Print do resultado da enquete.</li><li>Você: “Não é falta de fé. É falta de horário. Fé sem horário vira culpa.”</li><li>Figurinha de contagem: “Quinta-feira, um presente para você.”</li></ul><p class="gancho">Gancho para amanhã: “Quinta às 6h eu libero o presente. Ativa o lembrete.”</p></div><div class="cap"><div class="ch"><span class="cd">25/11</span><b>Cap. 4 · Dia de consagração</b></div><ul><li>Um momento da sua consagração (sem venda).</li><li>“Hoje é dia de estar com Deus. Amanhã eu te entrego algo para você também estar, todo dia.”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã, 6h.”</p></div><div class="cap"><div class="ch"><span class="cd">26/11</span><b>Cap. 5 · O guia saiu</b></div><ul><li>Você mostrando o guia no celular, folheando as páginas.</li><li>“Comenta METAMORFOSE em qualquer post que eu te mando.” (ou responda este story com METAMORFOSE)</li><li>Prints de quem pediu (com autorização).</li></ul><p class="gancho">Gancho para amanhã: “Amanhã às 20h tem live: os 3 ladrões do seu encontro com Deus.”</p></div><div class="cap"><div class="ch"><span class="cd">27/11</span><b>Cap. 6 · Hoje tem live</b></div><ul><li>Figurinha de lembrete da live das 20h.</li><li>Bastidor: preparando a Bíblia e o café para a live.</li><li>Depois da live: “Obrigada! Quem não viu, a gravação está no perfil.”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã eu mostro quem já está no dia 2 do guia.”</p></div><div class="cap"><div class="ch"><span class="cd">28/11</span><b>Cap. 7 · Quem já começou</b></div><ul><li>Prints de mensagens de quem está fazendo o guia (com autorização).</li><li>Caixinha: “Em que dia você costuma largar o devocional?”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã eu respondo e te conto uma coisa que eu percebi.”</p></div><div class="cap"><div class="ch"><span class="cd">29/11</span><b>Cap. 8 · O dia 8</b></div><ul><li>Respostas da caixinha: “A maioria de vocês me disse que larga entre o dia <span class="fill">[x]</span> e o dia <span class="fill">[y]</span>.” (use as respostas reais)</li><li>“Por isso eu estou preparando algo para quem não quer largar de novo.”</li><li>Figurinha: “Quer saber primeiro? Responde JARDIM.”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã eu mostro os bastidores.”</p></div><div class="cap"><div class="ch"><span class="cd">30/11</span><b>Cap. 9 · Bastidores</b></div><ul><li>Você gravando os áudios, montando o planner, testando o grupo.</li><li>“Amanhã às 20h, ao vivo, eu abro a turma fundadora.”</li><li>Figurinha de lembrete da live de abertura.</li></ul><p class="gancho">Gancho para amanhã: “Amanhã, 20h, ao vivo.”</p></div><div class="cap"><div class="ch"><span class="cd">01/12</span><b>Cap. 10 · Abriu</b></div><ul><li>Antes da live: lembrete. Depois: “A turma fundadora abriu!”</li><li>Vídeo: o que tem dentro (áudio 6h, lembrete 19h, encontros ao vivo, planner, aula bônus).</li><li>“Responde JARDIM que eu te mando o link.” Prints de quem entrou (com autorização).</li></ul><p class="gancho">Gancho para amanhã: “Amanhã é dia de consagração: as inscrições seguem abertas.”</p></div><div class="cap"><div class="ch"><span class="cd">02/12</span><b>Cap. 11 · Consagração</b></div><ul><li>Um story leve da consagração.</li><li>“As inscrições seguem abertas até domingo, 21h. Responde JARDIM se quiser o link.”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã eu te mostro uma mensagem que me fez chorar.”</p></div><div class="cap"><div class="ch"><span class="cd">03/12</span><b>Cap. 12 · A prova</b></div><ul><li>Print do depoimento de quem fez o guia (com autorização).</li><li>Você reagindo: “Não foi perfeito. Ela não largou.”</li><li>“É isso que a gente vai viver em 21 dias. Responde JARDIM.”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã às 20h: live de perguntas. Manda a sua dúvida na caixinha.”</p></div><div class="cap"><div class="ch"><span class="cd">04/12</span><b>Cap. 13 · Perguntas</b></div><ul><li>Caixinha: “Qual a sua dúvida sobre a turma?”</li><li>Respostas em vídeo curto (2 ou 3).</li><li>Lembrete da live das 20h.</li></ul><p class="gancho">Gancho para amanhã: “Amanhã eu te conto por que são 21 dias.”</p></div><div class="cap"><div class="ch"><span class="cd">05/12</span><b>Cap. 14 · Por que 21 dias</b></div><ul><li>“Faltam 27 dias para o ano acabar. Em 21 deles, a gente caminha junto.”</li><li>A história: “Eu não queria que você chegasse em 31 de dezembro com a mesma culpa de janeiro.”</li><li>Contagem: “Fecha amanhã, 21h. Responde JARDIM.”</li></ul><p class="gancho">Gancho para amanhã: “Amanhã é o último dia.”</p></div><div class="cap"><div class="ch"><span class="cd">06/12</span><b>Cap. 15 · Último dia</b></div><ul><li>Manhã: “Último dia para entrar na turma fundadora.”</li><li>Tarde: prints de quem entrou + dúvidas respondidas.</li><li>Noite: contagem até as 21h. “Amanhã às 6h eu mando o primeiro áudio.”</li></ul><p class="gancho">Gancho para amanhã: “Segunda, 6h: começamos.”</p></div></div>
+</section>
+
+<section id="vitrine">
+  <div class="sec-head">
+    <p class="kicker">Perfil e gravação</p>
+    <h2>O que muda no perfil e como gravar tudo</h2>
+  </div>
+  <div class="cols">
+    <div class="card"><h3>Bio e fixados durante o lançamento</h3><ul>
+      <li><b>Bio até 29/11:</b> Sheila Nascimento | Bíblia para mulheres 🌿 · Ajudo a mulher de rotina corrida a ter um encontro diário com Deus · Não termine o ano longe do Jardim: comenta METAMORFOSE.</li>
+      <li><b>Bio de 30/11 a 06/12:</b> troque a última linha por “Turma fundadora aberta até 6/12: responda JARDIM no direct”.</li>
+      <li><b>Fixados:</b> 1 quem sou · 2 o CPL 1 · 3 o CPL 3 até 30/11, depois o post “A turma abriu”.</li>
+      <li><b>Destaque “Jardim”:</b> o guia, os prints de quem está fazendo e as dúvidas respondidas.</li></ul></div>
+    <div class="card"><h3>Gravar em 2 lotes</h3><ul>
+      <li><b>Sábado 21/11:</b> trend dos 40 dias, CPL 1, CPL 2 e as fotos do carrossel. Os Reels de 23 e 24/11 também, se ainda não estiverem gravados.</li>
+      <li><b>Sábado 28/11:</b> CPL 3 (precisa do celular com o áudio e o cartão de exemplo), o Reels das dúvidas e a foto do post de abertura.</li>
+      <li><b>Quinta 03/12, de manhã:</b> o react, depois que chegar um depoimento real.</li>
+      <li>Stories são gravados no dia, ao vivo, porque reagem ao que está acontecendo.</li></ul></div>
+  </div>
+</section>
+
+<section id="conferir">
+  <div class="sec-head">
+    <p class="kicker">Antes de começar</p>
+    <h2>O que confirmar e o que já foi conferido</h2>
+  </div>
+  <div class="cols">
+    <div class="card"><h3>Para a Sheila confirmar</h3><ul>
+      <li>A história do ônibus e a promessa de janeiro, com fatos reais (caps. 1 e 2).</li>
+      <li>Os encontros ao vivo ficam gravados? (Reels das dúvidas e live 3)</li>
+      <li>Vai ter bônus para quem entrar durante a live de abertura? Qual?</li>
+      <li>Os versículos na versão que ela usa: Mt 4:2, Lc 10:41-42, Sl 5:3, Ec 4:9-10, Gn 3:9.</li>
+      <li>A data da turma (7/12): se mudar, o calendário inteiro anda junto.</li>
+      <li>Depoimentos só com autorização, e nunca inventados.</li></ul></div>
+    <div class="card"><h3>Conferido</h3><ul class="checks">
+      <li>Os 8 formatos de Reels aparecem: narrado, tela dividida, lista, comparativo, novelinha, react, conversa e trend com texto.</li>
+      <li>Carrossel e post estático entram; quarta sem gravação.</li>
+      <li>Uma chamada por post, com a palavra certa para a fase.</li>
+      <li>5 roteiros novos com nota 100, entre 26 e 34 segundos, cena a cena.</li>
+      <li>Nada inventado da vida dela: o que é pessoal está em destaque para preencher.</li>
+      <li>Sem escassez falsa, sem medo e sem promessa de resultado espiritual.</li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <span>Preparado por Delaine Nogueira · 18/11/2026 · Datas sugeridas para a turma de 7/12.</span>
+  <span class="sign">O Jardim é seu, Sheila</span>
+</footer>
+</div>
+</body>
+</html>
