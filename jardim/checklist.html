@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Checklist do lançamento · Guia De volta ao Jardim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 14mm 14mm 15mm; }
+:root{ --creme:#F5EDE0; --folha:#4E6B4A; --terra:#B5733F; --ouro:#C49A4A; --cafe:#3E2C22; --cinza:#6E655B; --linha:#E4D8C4; --ouro-soft:#FBF3E2; --folha-soft:#EAF0E6; }
+*{box-sizing:border-box}
+body{font-family:Montserrat,Arial,sans-serif;color:var(--cafe);font-size:8.9pt;line-height:1.45;margin:0;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margin:0;line-height:1.1}
+h2{font-size:24pt;color:var(--cafe)}
+h3{font-size:14.5pt;color:var(--cafe)}
+p{margin:4px 0}
+a{color:var(--folha);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.kicker{font-size:7.4pt;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:700}
+.lead{color:var(--cinza);font-size:9.4pt;margin:4px 0 8px}
+.sec{page-break-before:always}
+.capa{height:258mm;background:var(--folha);color:var(--creme);border-radius:8px;padding:0 16mm;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.capa .arco{position:absolute;right:-30mm;top:-20mm;width:120mm;height:150mm;border-radius:999px 999px 0 0;border:1.5px solid rgba(245,237,224,.25)}
+.capa .arco2{position:absolute;right:-12mm;top:10mm;width:84mm;height:120mm;border-radius:999px 999px 0 0;background:rgba(245,237,224,.07)}
+.capa .kicker{color:#E3C98E}
+.capa h1{font-size:44pt;line-height:1.02;margin-top:10px;color:var(--creme)}
+.capa h1 em{font-style:italic;color:#E9B989;font-weight:500}
+.capa .sub{font-size:11.5pt;margin-top:14px;max-width:120mm;opacity:.92}
+.capa .ordem{margin-top:22px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:8.6pt;font-weight:600}
+.capa .ordem span{background:rgba(245,237,224,.14);padding:4px 10px;border-radius:99px}
+.capa .ordem b{color:#E3C98E}
+.capa .meta{position:absolute;bottom:14mm;left:16mm;font-size:8.2pt;opacity:.8}
+.capa .assin{position:absolute;bottom:12mm;right:16mm;font-family:'Great Vibes',cursive;font-size:28pt;color:#E3C98E}
+
+/* resumo */
+.resumo{width:100%;border-collapse:collapse;margin-top:8px;font-size:8.9pt}
+.resumo th{background:var(--folha);color:#fff;text-align:left;font-weight:600;padding:6px 8px;font-size:8pt;letter-spacing:.04em}
+.resumo td{padding:6px 8px;border-bottom:1px solid var(--linha);vertical-align:top}
+.resumo td.b{width:16px} .resumo .bx{display:inline-block;width:11px;height:11px;border:1.4px solid var(--terra);border-radius:2px;margin-top:2px}
+.resumo td.d{white-space:nowrap;font-weight:600}
+.resumo tr.grp td{background:var(--creme);font-weight:700;font-size:7.6pt;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);padding:5px 8px}
+.resumo tr{page-break-inside:avoid}
+
+/* passos */
+.passo{border:1px solid var(--linha);border-radius:8px;padding:9px 13px 8px;margin:8px 0;page-break-inside:avoid}
+.ph{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.pn{flex:none;width:24px;height:24px;border-radius:50%;background:var(--folha);color:#fff;font-weight:700;font-size:10pt;display:inline-flex;align-items:center;justify-content:center;position:relative;top:3px}
+.passo.pago .pn{background:var(--terra)}
+.ph h3{flex:1}
+.ph .ate{font-size:8pt;font-weight:700;color:var(--terra);white-space:nowrap}
+.pronto{font-size:8.6pt;background:var(--folha-soft);border-radius:5px;padding:5px 9px;margin:5px 0}
+.pronto b{color:var(--folha)}
+ol.steps{margin:5px 0 4px;padding-left:18px} ol.steps li{margin:2px 0}
+.refs{display:grid;gap:3px;margin-top:7px;padding-top:7px;border-top:1px dashed var(--linha)}
+.ref{font-size:8.6pt;display:flex;gap:7px;align-items:baseline}
+.tag{flex:none;font-size:6.6pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:99px;background:var(--creme);color:var(--cinza);position:relative;top:-1px}
+.tag.v{background:#F4E2D2;color:var(--terra)}
+.tag.o{background:var(--folha-soft);color:var(--folha)}
+.texto{background:var(--ouro-soft);border:1px solid #EBD9AE;border-radius:6px;padding:6px 10px;margin:5px 0;font-size:8.5pt;white-space:pre-line;page-break-inside:avoid}
+.texto .tl{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ouro);margin-bottom:2px;white-space:normal}
+.fill{background:#fff3cd;padding:0 3px;border-radius:2px;font-weight:600}
+.nota{font-size:8.2pt;color:var(--cinza)}
+.duas{display:flex;gap:10px}.duas>div{flex:1;min-width:0}
+
+/* roteiro */
+.cena{display:flex;gap:12px;border-bottom:1px solid var(--linha);padding:5px 0;page-break-inside:avoid}
+.cena .t{flex:none;width:62px;font-family:'Cormorant Garamond',serif;font-size:17pt;font-weight:700;color:var(--terra);line-height:1}
+.cena .t small{display:block;font-family:Montserrat,sans-serif;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);font-weight:600;margin-top:3px}
+.cena .f{flex:1.6;font-family:'Cormorant Garamond',serif;font-size:11.3pt;line-height:1.3}
+.cena .i{flex:1;font-size:8pt;color:var(--cinza);border-left:2px solid var(--linha);padding-left:9px}
+.cena .i b{color:var(--cafe)}
+.mock{display:flex;gap:14px;align-items:flex-start;margin-top:8px;page-break-inside:avoid}
+.lp{flex:none;width:62mm;background:var(--folha);color:var(--creme);border-radius:31mm 31mm 6px 6px;padding:13mm 6mm 6mm;text-align:center}
+.lp .k{font-size:6.4pt;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
+.lp h4{font-family:'Cormorant Garamond',serif;font-size:17pt;margin:4px 0;line-height:1.05;font-weight:600}
+.lp p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11pt;line-height:1.25}
+.lp .bt{background:var(--creme);color:var(--folha);border-radius:99px;font-weight:700;font-size:8pt;padding:6px 8px;margin:8px 0 5px}
+.lp .s{font-size:6.8pt;opacity:.9}
+.lp .qr{width:16mm;height:16mm;margin:6px auto 0;border:1.5px dashed rgba(245,237,224,.6);border-radius:3px;font-size:6pt;display:flex;align-items:center;justify-content:center}
+.fim{margin-top:14px;background:var(--creme);border-radius:8px;padding:12px 14px}
+.fim .assin{font-family:'Great Vibes',cursive;font-size:22pt;color:var(--terra)}
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<section class="capa">
+  <div class="arco"></div><div class="arco2"></div>
+  <p class="kicker">Sheila Nascimento · Lançamento do guia</p>
+  <h1>O seu checklist <em>até a turma abrir</em></h1>
+  <p class="sub">Tudo o que você precisa fazer, na ordem, com o critério de pronto, os textos já escritos e os tutoriais gratuitos para cada ferramenta. Os links deste PDF são clicáveis.</p>
+  <div class="ordem">
+    <span>Guia</span><b>→</b><span>Greenn</span><b>→</b><span>Vídeos</span><b>→</b><span>YouTube</span><b>→</b><span>ManyChat</span><b>→</b><span>Teste</span>
+  </div>
+  <p class="meta">Preparado por Delaine Nogueira · 18/11/2026 · Turma 1 começa em [7/12]</p>
+  <p class="assin">O Jardim é seu</p>
+</section>
+
+<!-- RESUMO -->
+<section class="sec">
+  <p class="kicker">Visão de uma página</p>
+  <h2>O checklist inteiro</h2>
+  <p class="lead">Marque conforme for fazendo. O detalhe de cada item, com o passo a passo e os tutoriais, vem nas páginas seguintes.</p>
+  <table class="resumo">
+    <thead><tr><th></th><th>O que fazer</th><th>Pronto quando</th><th>Até</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td colspan="4">1 · O guia</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Terminar o guia: história do ônibus, foto e os 7 dias revisados</td><td>Nenhum trecho em amarelo sobrando</td><td class="d">21/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Montar a última página com o convite especial</td><td>Botão do vídeo, QR code e link direto da Greenn no lugar</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Baixar o guia em PDF com os links clicáveis</td><td>Você tocou nos links no celular e eles abriram</td><td class="d">25/11</td></tr>
+      <tr class="grp"><td colspan="4">2 · Greenn</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Criar a sua conta na Greenn</td><td>Conta criada, com CPF e conta bancária para saque</td><td class="d">20/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Criar o produto Acesso Diário ao Jardim (R$ 47)</td><td>Produto aprovado, com a descrição pronta</td><td class="d">21/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Montar a área de membros no Greenn Club</td><td>Aula de boas-vindas com vídeo, link do grupo e descrição</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Mandar o link de pagamento para a Delaine</td><td>Link enviado no WhatsApp</td><td class="d">21/11</td></tr>
+      <tr class="grp"><td colspan="4">3 · Vídeos e YouTube</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Gravar o vídeo de vendas (o convite, 3 min)</td><td>As 7 cenas gravadas</td><td class="d">23/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Gravar o vídeo de boas-vindas da área de membros</td><td>Vídeo de 1 a 2 minutos gravado</td><td class="d">24/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Subir os dois vídeos no YouTube como não listados</td><td>Links copiados e enviados para a Delaine</td><td class="d">25/11</td></tr>
+      <tr class="grp"><td colspan="4">4 · ManyChat e WhatsApp</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Criar a automação METAMORFOSE no ManyChat</td><td>Um comentário de teste recebe o direct sozinho</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Preparar o WhatsApp Business para entregar o guia</td><td>Etiqueta, resposta rápida /guia e lista de transmissão</td><td class="d">26/11</td></tr>
+      <tr class="grp"><td colspan="4">5 · Teste antes de divulgar</td></tr>
+      <tr><td class="b"><span class="bx"></span></td><td>Fazer o caminho inteiro como se fosse uma aluna</td><td>Comentou, recebeu o guia, viu o vídeo, comprou e entrou no grupo</td><td class="d">25/11</td></tr>
+    </tbody>
+  </table>
+  <p class="nota" style="margin-top:8px">A partir de 26/11 o guia começa a ser divulgado nos Reels, stories e fixado. A turma abre em 1º/12 e começa em [7/12].</p>
+</section>
+
+<!-- 1 GUIA -->
+<section class="sec">
+  <p class="kicker">Parte 1</p>
+  <h2>O guia</h2>
+  <p class="lead">O guia é a porta de entrada gratuita. A última página dele é onde a venda começa.</p>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">1</span><h3>Terminar o guia</h3><span class="ate">até 21/11</span></div>
+    <ol class="steps">
+      <li>Troque os trechos em amarelo da história do ônibus pelos seus fatos: em que trabalhava, a que horas saía, como chegou a pregar.</li>
+      <li>Coloque uma foto real sua com a Bíblia na página da história.</li>
+      <li>Leia os 7 dias mais uma vez e troque o que não soar como você.</li>
+    </ol>
+    <p class="pronto"><b>Pronto quando:</b> não sobra nenhum trecho em amarelo e você leu o guia inteiro no celular.</p>
+  </div>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">2</span><h3>A última página: o convite especial</h3><span class="ate">até 25/11</span></div>
+    <p>É uma página de presente para quem chegou ao fim. Ela responde ao que a leitora marcou no Mapa do Jardim e leva ao seu vídeo, onde você faz o convite.</p>
+    <div class="mock">
+      <div class="lp">
+        <div class="k">Um convite especial</div>
+        <h4>Você chegou até aqui. Tenho uma coisa para você.</h4>
+        <p>Marcou no Mapa que falta alguém te lembrando? Eu te mando todo dia às 6h.</p>
+        <div class="bt">▶ Assistir ao meu convite (3 min)</div>
+        <div class="s">Condição de fundadora · turma começa em [7/12]</div>
+        <div class="qr">QR do vídeo</div>
+        <div class="s" style="margin-top:5px">Já decidiu? Entre direto: [link Greenn]</div>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div class="texto"><span class="tl">Texto da página · copiar</span>Um convite especial
+Você chegou até aqui. Tenho uma coisa para você.
+
+Marcou no Mapa que falta alguém te lembrando? Eu te mando todo dia às 6h.
+
+Gravei um vídeo curto contando como vai ser a nossa primeira turma. Para quem chegou ao fim do guia, a entrada é na condição de fundadora.
+
+▶ Assistir ao meu convite (3 min)
+
+Turma começa em <span class="fill">[7/12]</span>
+Já decidiu? Entre direto: <span class="fill">[link Greenn]</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">3</span><h3>Baixar o guia em PDF com links clicáveis</h3><span class="ate">até 25/11</span></div>
+    <ol class="steps">
+      <li>No Canva, selecione o botão "Assistir ao meu convite" e clique no ícone de <b>link</b> (no computador, Ctrl + K). Cole o link do vídeo no YouTube.</li>
+      <li>Faça o mesmo no texto "Entre direto", com o link da Greenn.</li>
+      <li>QR code: em <b>Apps</b>, procure "Código QR", cole o link do vídeo e coloque o código na página.</li>
+      <li>Baixe em <b>Compartilhar → Baixar → PDF Padrão</b>. Não use "PDF para impressão" nem marque "achatar PDF": nesses formatos os links podem parar de funcionar.</li>
+      <li>Mande o PDF para o seu WhatsApp, abra no celular e toque nos links.</li>
+    </ol>
+    <p class="pronto"><b>Pronto quando:</b> você tocou nos dois links e no QR code pelo celular e os três abriram certo.</p>
+    <div class="refs">
+      <div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://www.canva.com/pt_br/help/hyperlinks/">Canva: como adicionar links (e por que baixar em PDF)</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=oIOxuQv-vbY">Link clicável no PDF feito no Canva gratuito</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=FudQARgQG-A">Como adicionar link clicável no Canva pelo celular</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 GREENN -->
+<section class="sec">
+  <p class="kicker">Parte 2</p>
+  <h2>Greenn: produto e área de membros</h2>
+  <p class="lead">Na Greenn ficam o pagamento (Pix e cartão) e a área de membros, onde a aluna chega depois de comprar. Criar a conta e o produto é gratuito: a Greenn só cobra uma taxa quando você vende.</p>
+
+  <div class="passo pago">
+    <div class="ph"><span class="pn">4</span><h3>Criar a sua conta</h3><span class="ate">até 20/11</span></div>
+    <ol class="steps">
+      <li>Entre em <a href="https://adm.greenn.com.br">adm.greenn.com.br</a> e clique em "Não tenho conta".</li>
+      <li>Preencha nome, e-mail, telefone e senha, aceite os termos e informe o seu CPF.</li>
+      <li>Cadastre a conta bancária para receber os saques.</li>
+    </ol>
+    <p class="nota">A análise de documentos leva até 24 horas. Por isso a conta vem primeiro.</p>
+    <div class="refs"><div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://greenn.com.br/ajuda/vendo/criar-conta/">Como criar sua conta na Greenn</a></div></div>
+  </div>
+
+  <div class="passo pago">
+    <div class="ph"><span class="pn">5</span><h3>Criar o produto Acesso Diário ao Jardim</h3><span class="ate">até 21/11</span></div>
+    <ol class="steps">
+      <li>Menu <b>Produtos → Novo Produto</b>. Tipo: <b>Curso Online</b>.</li>
+      <li><b>Imagem</b> de 512 × 512 px (faça no Canva, com as cores do guia). <b>Título:</b> Acesso Diário ao Jardim.</li>
+      <li><b>Página de vendas:</b> o link do seu Instagram. <b>Descrição:</b> o texto abaixo (a Greenn pede no mínimo 200 caracteres).</li>
+      <li><b>Garantia:</b> 7 dias. <b>Tipo de cobrança:</b> Valor único, R$ 47. <b>Pagamento:</b> Pix e cartão.</li>
+      <li>Clique em <b>Criar Produto</b>. A maioria é aprovada na hora; se entrar em análise, leva até 24 horas úteis.</li>
+      <li>Em <b>Ofertas e links</b>, copie o link de pagamento e mande para a Delaine.</li>
+    </ol>
+    <div class="texto"><span class="tl">Descrição do produto · copiar</span>Acesso Diário ao Jardim é um acompanhamento devocional de 21 dias em grupo, com Sheila Nascimento, para a mulher de rotina corrida que quer ter um encontro diário com Deus, sem culpa. Todos os dias, às 6h, você recebe no WhatsApp um áudio de 5 minutos, o cartão do dia e uma frase para levar. Às 19h, um lembrete na viração do dia. São 3 encontros ao vivo de 40 minutos, o planner dos 21 dias e a aula bônus "Como ler a Bíblia sozinha em 15 minutos". Turma fundadora com início em <span class="fill">[7 de dezembro]</span>.</div>
+    <p class="pronto"><b>Pronto quando:</b> o produto aparece como aprovado e o link de pagamento está com a Delaine.</p>
+    <div class="refs">
+      <div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://greenn.com.br/ajuda/vendo/cadastrando-um-produto-de-valor-unico-20/">Como cadastrar um produto de valor único na Greenn</a></div>
+      <div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://greenn.com.br/ajuda/vendo/prazos-de-aprovacao-da-plataforma/">Prazo de aprovação de produtos e documentos</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=H4-tciRQ5qY">Como criar um produto na Greenn</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=lYuq-w_lSQ4">Como criar um produto no Greenn (outro passo a passo)</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="passo pago" style="margin-top:0">
+    <div class="ph"><span class="pn">6</span><h3>Montar a área de membros no Greenn Club</h3><span class="ate">até 25/11</span></div>
+    <p>É para lá que a aluna vai depois de pagar. O mais importante é a aula de boas-vindas: o vídeo, o link do grupo e o que fazer primeiro.</p>
+    <ol class="steps">
+      <li><b>Produtos → Meus Produtos</b> → engrenagem do produto → <b>Editar produto</b>.</li>
+      <li>Aba <b>Entrega e integrações → Adicionar entrega → Entregar pelo Club</b>.</li>
+      <li>Clique no <b>+</b> para criar a área. Nome: "Jardim da Sheila". Subdomínio: por exemplo <b>jardim-da-sheila</b> (só letras minúsculas, números e hífen). Clique em <b>Criar área de membros</b>.</li>
+      <li>Crie os módulos e as aulas abaixo. Na aula, coloque o vídeo pelo link do YouTube ou enviando o arquivo, como o Club pedir.</li>
+    </ol>
+    <div class="duas">
+      <div class="texto"><span class="tl">Módulos e aulas</span><b>Módulo 1 · Comece aqui</b>
+  Aula 1 · Boas-vindas (vídeo + link do grupo)
+  Aula 2 · Planner dos 21 dias (PDF)
+<b>Módulo 2 · Bônus</b>
+  Como ler a Bíblia sozinha em 15 minutos
+<b>Módulo 3 · Encontros ao vivo</b>
+  Gravações dos 3 encontros (entram depois)</div>
+      <div class="texto"><span class="tl">Texto embaixo do vídeo de boas-vindas · copiar</span>Seja bem-vinda ao Acesso Diário ao Jardim! 🌿
+
+1. Entre no grupo da turma: <span class="fill">[link da Comunidade]</span>
+2. Salve o meu número para receber os áudios: <span class="fill">[seu WhatsApp]</span>
+3. Baixe o planner na próxima aula.
+4. Encontros ao vivo: <span class="fill">[dias e horário]</span>, link enviado no grupo na véspera.
+
+Nossa turma começa no dia <span class="fill">[7/12]</span>, às 6h.</div>
+    </div>
+    <p class="pronto"><b>Pronto quando:</b> você entra como aluna (na compra de teste) e encontra o vídeo, o link do grupo e o planner.</p>
+    <div class="refs">
+      <div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://greenn.com.br/ajuda/vendo/criando-sua-area-de-membros/">Como criar sua área de membros na Greenn</a></div>
+      <div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://greenn.com.br/ajuda/comprei/primeiro-acesso-ao-curso/">Como a aluna faz o primeiro acesso ao Greenn Club</a> (bom para mandar a quem tiver dúvida)</div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=CvVDrQo6RSw">Greenn Club: a área de membros gratuita</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=sojtgN-BDwo">Como criar módulos no Greenn Club</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=OrzU8QC5an4">Como criar turmas no Greenn Club</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=C-N3DBXiOrU">Como criar categorias e personalizar capas no Greenn Club</a></div>
+    </div>
+    <p class="nota" style="margin-top:6px">Os vídeos do YouTube têm alguns anos e a tela da Greenn pode estar um pouco diferente. Se algo não bater, siga a ajuda oficial, que é atualizada.</p>
+  </div>
+</section>
+
+<!-- 3 VIDEOS -->
+<section class="sec">
+  <p class="kicker">Parte 3</p>
+  <h2>Os dois vídeos</h2>
+  <p class="lead">Grave na vertical, de frente para a janela, com o celular no tripé na altura dos olhos. Leia num app de teleprompter, uma cena por vez: errou, regrava só aquela cena. Legendas e textos na tela no CapCut.</p>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">7</span><h3>Vídeo de vendas: o seu convite</h3><span class="ate">gravar até 23/11</span></div>
+    <p class="nota">Cerca de 3 minutos. Quem assiste já fez os 7 dias e já conhece você: o vídeo começa no Mapa do Jardim e termina num convite só.</p>
+    <div class="cena"><div class="t">0:00<small>Acolhida</small></div><div class="f">Oi, querida. Se você chegou até aqui, você passou pelos 7 dias do guia. Ou por alguns deles. E deixa eu te dizer uma coisa: todos contam.</div><div class="i"><b>Imagem:</b> você de frente, Bíblia no colo.<br><b>Na tela:</b> Você chegou ao fim do guia 🌿</div></div>
+    <div class="cena"><div class="t">0:15<small>O Mapa</small></div><div class="f">Agora volta comigo no Mapa do Jardim. No fim, você marcou o que falta para você ser constante. Talvez tenha marcado "alguém me lembrando". Ou "companhia". Ou só pensou: sozinha eu esqueço.</div><div class="i"><b>Imagem:</b> suas mãos mostrando a página do Mapa.<br><b>Na tela:</b> O que você marcou no Mapa?</div></div>
+    <div class="cena"><div class="t">0:40<small>A história</small></div><div class="f">Eu sei como é. Eu comecei os meus devocionais num banco de ônibus, <span class="fill">[indo para o trabalho, às 5 da manhã]</span>. Não era o lugar perfeito, nem a hora perfeita. Mas era o meu encontro com Deus. E o que me fez continuar foi <span class="fill">[ter um horário certo e alguém caminhando comigo]</span>.</div><div class="i"><b>Imagem:</b> foto sua daquela época ou a janela de um ônibus.<br><b>Na tela:</b> O meu jardim era um banco de ônibus</div></div>
+    <div class="cena"><div class="t">1:10<small>O dia 8</small></div><div class="f">O guia te mostrou que dá, mesmo com a sua vida. O difícil não é começar. É o dia 8. Quando ninguém lembra, a semana aperta e a culpa volta. Foi pensando no dia 8 que eu criei o próximo passo.</div><div class="i"><b>Imagem:</b> seu rosto, mais perto.<br><b>Na tela:</b> O difícil é o dia 8</div></div>
+    <div class="cena"><div class="t">1:35<small>A oferta</small></div><div class="f">Ele se chama Acesso Diário ao Jardim. São 21 dias comigo, em grupo, começando no dia <span class="fill">[7 de dezembro]</span>. Todo dia, às 6 da manhã, chega no seu WhatsApp um áudio meu de 5 minutos, o cartão do dia e uma frase para levar. Às 7 da noite, na viração do dia, eu te lembro: se o dia não deixou, o Jardim ainda está aberto. Toda semana a gente se encontra ao vivo por 40 minutos, para orar e tirar dúvidas. E você ganha o planner dos 21 dias e a aula "Como ler a Bíblia sozinha em 15 minutos". É tudo novo: nada do guia se repete.</div><div class="i"><b>Imagem:</b> o celular com o grupo, o planner, um encontro ao vivo.<br><b>Na tela, um por vez:</b> 6h · áudio de 5 min / 19h · lembrete / 3 encontros ao vivo / planner + aula bônus</div></div>
+    <div class="cena"><div class="t">2:25<small>Preço</small></div><div class="f">Um devocional só em PDF costuma custar de 50 a 67 reais. Na turma fundadora, você tem 21 dias de acompanhamento comigo por 47 reais, no Pix ou no cartão. E se nos 7 primeiros dias você sentir que não é para você, é só pedir o seu dinheiro de volta.</div><div class="i"><b>Imagem:</b> selo de R$ 47 por cima do vídeo.<br><b>Na tela:</b> R$ 47 · turma fundadora · 7 dias de garantia</div></div>
+    <div class="cena"><div class="t">2:50<small>Convite</small></div><div class="f">Para entrar, toca no link aqui embaixo do vídeo. Você escolhe Pix ou cartão e já recebe o acesso. As inscrições fecham no dia <span class="fill">[6 de dezembro, às 9 da noite]</span>. Eu te espero no Jardim, querida.</div><div class="i"><b>Imagem:</b> você sorrindo, gesto para baixo.<br><b>Na tela:</b> Toque no link abaixo do vídeo 👇</div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="passo" style="margin-top:0">
+    <div class="ph"><span class="pn">8</span><h3>Vídeo de boas-vindas da área de membros</h3><span class="ate">gravar até 24/11</span></div>
+    <p class="nota">De 1 a 2 minutos. É a primeira coisa que a aluna vê depois de comprar: ela precisa sair sabendo entrar no grupo e quando tudo começa.</p>
+    <div class="cena"><div class="t">0:00<small>Alegria</small></div><div class="f">Que alegria ter você aqui, querida! Seja muito bem-vinda ao Acesso Diário ao Jardim.</div><div class="i"><b>Imagem:</b> você sorrindo, mesmo cenário do convite.</div></div>
+    <div class="cena"><div class="t">0:10<small>O grupo</small></div><div class="f">Antes de tudo, entre no nosso grupo: o link está aqui embaixo deste vídeo. É lá que tudo acontece. Todo dia, às 6 da manhã, chega o áudio, e às 7 da noite, o lembrete.</div><div class="i"><b>Na tela:</b> 1º passo: entre no grupo 👇</div></div>
+    <div class="cena"><div class="t">0:30<small>Como funciona</small></div><div class="f">O grupo tem duas partes: Avisos, onde só eu escrevo, e Conversa, onde você conta "Estive no Jardim" quando fizer o seu encontro do dia. Salve o meu número para receber tudo certinho.</div><div class="i"><b>Imagem:</b> o celular mostrando a Comunidade.</div></div>
+    <div class="cena"><div class="t">0:50<small>A área</small></div><div class="f">Aqui você encontra o planner dos 21 dias, para imprimir ou usar no celular, e a aula bônus "Como ler a Bíblia sozinha em 15 minutos". As gravações dos encontros ao vivo também vão ficar aqui.</div><div class="i"><b>Imagem:</b> a tela da área de membros.</div></div>
+    <div class="cena"><div class="t">1:10<small>A data</small></div><div class="f">A nossa turma começa no dia <span class="fill">[7 de dezembro]</span>, às 6 da manhã. Até lá, escolha o seu horário de Jardim e coloque o alarme.</div><div class="i"><b>Na tela:</b> Começamos em [7/12], às 6h</div></div>
+    <div class="cena"><div class="t">1:25<small>Sem culpa</small></div><div class="f">E lembra: aqui não tem cobrança. Perdeu um dia, segue de onde parou. A porta de 1 minuto também é encontro. Eu te espero no Jardim.</div><div class="i"><b>Imagem:</b> você, encerrando com carinho.</div></div>
+  </div>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">9</span><h3>Subir os dois vídeos no YouTube como não listados</h3><span class="ate">até 25/11</span></div>
+    <ol class="steps">
+      <li>No app do YouTube, toque em <b>+ → Enviar um vídeo</b> e escolha o arquivo.</li>
+      <li>Na visibilidade, escolha <b>Não listado</b>: só quem tem o link assiste. O vídeo não aparece no seu canal nem na busca.</li>
+      <li>Vídeo de vendas · título "Acesso Diário ao Jardim · convite da Sheila", com a descrição abaixo. Depois de publicar, fixe um comentário com o mesmo link da Greenn.</li>
+      <li>Vídeo de boas-vindas · título "Boas-vindas · Acesso Diário ao Jardim". Ele vai dentro da aula 1 do Greenn Club.</li>
+      <li>Copie os dois links e mande para a Delaine.</li>
+    </ol>
+    <div class="texto"><span class="tl">Descrição do vídeo de vendas · copiar</span>Entre na turma: <span class="fill">[link Greenn]</span>
+
+Acesso Diário ao Jardim · 21 dias comigo, em grupo, para a mulher de rotina corrida que quer ter um encontro diário com Deus. Áudio às 6h, lembrete às 19h, 3 encontros ao vivo, planner e aula bônus. Turma fundadora: R$ 47. Começa em <span class="fill">[7/12]</span>.</div>
+    <p class="pronto"><b>Pronto quando:</b> você abriu os dois links numa aba anônima e os vídeos tocaram.</p>
+    <div class="refs">
+      <div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://support.google.com/youtube/answer/57407?hl=pt-BR">YouTube: como enviar vídeos</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=D630KaRpYt4">Como postar vídeo não listado no YouTube (computador e celular)</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 MANYCHAT -->
+<section class="sec">
+  <p class="kicker">Parte 4</p>
+  <h2>ManyChat e WhatsApp: o guia chegando sozinho</h2>
+  <p class="lead">Quem comenta METAMORFOSE num post recebe o direct automaticamente, sem você precisar estar online. O ManyChat tem plano gratuito.</p>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">10</span><h3>Criar a automação METAMORFOSE</h3><span class="ate">até 25/11</span></div>
+    <ol class="steps">
+      <li>Crie a conta em manychat.com e conecte o Instagram @combresheila (precisa ser conta profissional).</li>
+      <li><b>Automations → New Automation</b>. Gatilho: <b>comentário em post ou Reels</b>, só quando contiver a palavra <b>METAMORFOSE</b>. Marque "todos os posts" para valer também nos próximos.</li>
+      <li>Ative a <b>resposta pública ao comentário</b> com o texto 1.</li>
+      <li>Mensagem no direct: texto 2. Quando ela responder com o número, mande o texto 3.</li>
+      <li>Teste comentando de outra conta. Nos testes, só o primeiro comentário de cada pessoa costuma disparar: se repetir, use uma conta diferente.</li>
+    </ol>
+    <div class="texto"><span class="tl">Texto 1 · resposta pública no comentário</span>Te mandei no direct 🌿</div>
+    <div class="texto"><span class="tl">Texto 2 · direct automático</span>Que alegria você querer voltar ao Jardim! 🌿 O guia é gratuito e eu te mando pelo WhatsApp, junto com uns lembretes carinhosos durante os 7 dias. Me passa o seu número com DDD?</div>
+    <div class="texto"><span class="tl">Texto 3 · depois que ela mandar o número</span>Recebi! Daqui a pouco o seu guia chega no WhatsApp. Salva o meu número para não perder nenhuma mensagem, tá? 💛</div>
+    <p class="pronto"><b>Pronto quando:</b> um comentário de teste com METAMORFOSE recebe a resposta pública e o direct sem você tocar em nada.</p>
+    <div class="refs">
+      <div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://manychat.com/blog/pt-br/how-to-get-started-with-instagram-dm-automation/">ManyChat: como começar a automação de direct no Instagram</a></div>
+      <div class="ref"><span class="tag o">Guia</span><a href="https://rafaelterra.com.br/como-ganhar-seguidores-qualificados-no-instagram-2026/">Passo a passo completo do ManyChat por palavra-chave (Rafael Terra, 2026)</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=LhK8R4OaWh4">Como automatizar o seu direct do Instagram (tutorial ManyChat)</a></div>
+      <div class="ref"><span class="tag v">Vídeo</span><a href="https://www.youtube.com/watch?v=yfwIE-rJz1s">ManyChat: automação no Instagram no plano grátis</a></div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">11</span><h3>Preparar o WhatsApp Business para entregar o guia</h3><span class="ate">até 26/11</span></div>
+    <ol class="steps">
+      <li>Crie a etiqueta <b>Jardim · baixou</b> e marque cada pessoa que receber o guia.</li>
+      <li>Em <b>Ferramentas comerciais → Respostas rápidas</b>, crie o atalho <b>/guia</b> com o texto abaixo. Mande o PDF do guia logo depois do texto.</li>
+      <li>Crie a lista de transmissão "Jardim" para as mensagens do dia 2, do dia 5 e da abertura da turma. Ela só chega a quem salvou o seu número.</li>
+    </ol>
+    <div class="texto"><span class="tl">Resposta rápida /guia · copiar</span>Que alegria te ver aqui! 🌿 Aqui está o seu Guia De volta ao Jardim. Comece pela página "Querida, respira". Escolha a porta que cabe no seu dia: 10, 5 ou 1 minuto. Todas contam.
+Salva o meu número para receber os lembretes, tá? 💛</div>
+  </div>
+</section>
+
+<!-- 5 TESTE -->
+<section class="sec">
+  <p class="kicker">Parte 5</p>
+  <h2>O teste final, antes de divulgar</h2>
+  <p class="lead">Faça o caminho inteiro como se fosse uma aluna, de outra conta e de outro celular. Só divulgue o guia depois que tudo isto funcionar.</p>
+  <div class="passo">
+    <div class="ph"><span class="pn">12</span><h3>O caminho da aluna, do começo ao fim</h3><span class="ate">até 25/11</span></div>
+    <table class="resumo">
+      <tbody>
+        <tr><td class="b"><span class="bx"></span></td><td>Comentar METAMORFOSE num post</td><td>Chegou a resposta pública e o direct</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Mandar o número pelo direct</td><td>Chegou o guia no WhatsApp com o /guia</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Abrir o PDF no celular e tocar no botão da última página</td><td>O vídeo de vendas abriu no YouTube</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Tocar no link abaixo do vídeo</td><td>Abriu o checkout da Greenn com R$ 47</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Comprar no Pix</td><td>Chegou o e-mail de acesso da Greenn</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Entrar no Greenn Club</td><td>Vídeo de boas-vindas, link do grupo e planner no lugar</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Tocar no link do grupo</td><td>Entrou na Comunidade da turma</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Pedir o reembolso da compra de teste</td><td>Reembolso solicitado</td></tr>
+      </tbody>
+    </table>
+    <div class="refs"><div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://greenn.com.br/ajuda/comprei/reembolso/">Como pedir reembolso na Greenn</a></div></div>
+  </div>
+
+  <div class="passo">
+    <div class="ph"><span class="pn">✓</span><h3>O que mandar para a Delaine</h3></div>
+    <table class="resumo">
+      <tbody>
+        <tr><td class="b"><span class="bx"></span></td><td>Link de pagamento da Greenn</td><td class="d">21/11</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Link do vídeo de vendas no YouTube</td><td class="d">25/11</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Link do vídeo de boas-vindas</td><td class="d">25/11</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>Link da área de membros (jardim-da-sheila.greenn.club ou o que você escolher)</td><td class="d">25/11</td></tr>
+        <tr><td class="b"><span class="bx"></span></td><td>O guia final em PDF</td><td class="d">25/11</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="fim">
+    <p><b>Uma coisa de cada vez.</b> Siga a ordem deste checklist: cada parte prepara a próxima. Se travar em alguma ferramenta, abra o tutorial do passo e, se ainda assim não der, mande um print para a Delaine.</p>
+    <p class="assin">O Jardim é seu, Sheila</p>
+  </div>
+</section>
+
+</body>
+</html>

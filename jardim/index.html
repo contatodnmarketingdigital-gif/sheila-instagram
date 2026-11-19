@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Caminho do Jardim</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&family=Great+Vibes&display=swap">
+<style>
+/* Layout: um caminho vertical pelo jardim. Visão geral em 4 estações, depois a jornada passo a passo com a linha do caminho à esquerda, e por fim datas, conta e checklist. Paleta "Jardim ao entardecer" do manual da marca da Sheila. */
+:root{
+  --bg:#F7F1E7; --surface:#FFFCF6; --creme:#EFE4D2; --line:#E2D4BD;
+  --fg:#3E2C22; --muted:#6F6156;
+  --folha:#4E6B4A; --folha-soft:#E3EADF; --terra:#B5733F; --terra-soft:#F4E2D2; --ouro:#B98D3C; --ouro-soft:#F6ECD6;
+  --on-dark:#F5EDE0;
+  --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:'Montserrat', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --script:'Great Vibes', 'Brush Script MT', cursive;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1D1712; --surface:#271F19; --creme:#30271F; --line:#3E342A;
+  --fg:#F1E7D8; --muted:#B9AB9A;
+  --folha:#8DB087; --folha-soft:#26301F; --terra:#DB9A66; --terra-soft:#3A2719; --ouro:#D8B567; --ouro-soft:#382D17;
+  --on-dark:#1D1712; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1D1712; --surface:#271F19; --creme:#30271F; --line:#3E342A;
+  --fg:#F1E7D8; --muted:#B9AB9A;
+  --folha:#8DB087; --folha-soft:#26301F; --terra:#DB9A66; --terra-soft:#3A2719; --ouro:#D8B567; --ouro-soft:#382D17;
+  --on-dark:#1D1712; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.6;margin:0}
+.wrap{max-width:1060px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,4.4vw,40px)}
+h3{font-size:22px}
+p{margin:0}
+.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--terra)}
+.lead{color:var(--muted);max-width:62ch}
+section{padding-block:56px 8px}
+.sec-head{display:grid;gap:10px;margin-bottom:28px}
+
+/* HERO */
+.hero{padding-block:48px 24px}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:end}
+.hero h1{font-size:clamp(42px,7.5vw,76px);color:var(--folha);letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--terra);font-weight:500}
+.hero .sub{font-size:17px;color:var(--muted);margin-top:16px;max-width:52ch}
+.hero-note{border-left:2px solid var(--ouro);padding:4px 0 4px 18px;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.hero-note strong{color:var(--fg);font-weight:600}
+.sign{font-family:var(--script);font-size:30px;color:var(--terra);line-height:1}
+
+/* VISÃO GERAL: 4 estações */
+.stations{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:8px}
+.station{position:relative;padding:0 10px;display:grid;grid-template-rows:auto auto 1fr;gap:10px;justify-items:center;text-align:center}
+.arch{width:100%;max-width:190px;aspect-ratio:4/5;border-radius:999px 999px 14px 14px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:18px 14px 18px;gap:6px;position:relative}
+.arch svg{width:54px;height:54px;margin-bottom:auto;margin-top:22px}
+.arch .nm{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.05}
+.arch .price{font-size:12px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:99px}
+.s1 .arch{background:var(--creme);color:var(--fg)}
+.s1 .price{background:var(--surface);color:var(--folha)}
+.s2 .arch{background:var(--folha);color:var(--on-dark)}
+.s2 .price{background:var(--on-dark);color:var(--folha)}
+.s3 .arch{background:var(--terra);color:var(--on-dark)}
+.s3 .price{background:var(--on-dark);color:var(--terra)}
+.s4 .arch{background:var(--surface);color:var(--fg);border:1.5px solid var(--ouro)}
+.s4 .price{background:var(--ouro-soft);color:var(--ouro)}
+.station .what{font-size:13.5px;color:var(--muted);max-width:24ch}
+.station .what b{color:var(--fg);font-weight:600}
+.station:not(:last-child)::after{content:"";position:absolute;top:44%;right:-9px;width:18px;height:18px;border-top:2px solid var(--ouro);border-right:2px solid var(--ouro);transform:rotate(45deg);z-index:1}
+.bridge{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.bridge div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.bridge b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:4px}
+.free-paid{display:flex;justify-content:space-between;gap:12px;margin:0 10px 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.free-paid span:first-child{color:var(--folha)}
+.free-paid span:last-child{color:var(--terra)}
+
+/* JORNADA */
+.journey{position:relative;display:grid;gap:0}
+.step{display:grid;grid-template-columns:56px 1fr;gap:0 18px;position:relative;padding-bottom:34px}
+.step::before{content:"";position:absolute;left:27px;top:52px;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,var(--line) 0 6px,transparent 6px 11px)}
+.step:last-child::before{display:none}
+.dot{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:26px;font-weight:700;background:var(--folha);color:var(--on-dark);position:relative;z-index:1}
+.step.paid .dot{background:var(--terra)}
+.step.side .dot{background:var(--surface);color:var(--muted);border:2px dashed var(--line);font-size:20px}
+.step-body{display:grid;gap:14px;min-width:0;padding-top:6px}
+.step-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.step-title h3{font-size:26px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--folha-soft);color:var(--folha)}
+.step.paid .tag{background:var(--terra-soft);color:var(--terra)}
+.step.side .tag{background:var(--creme);color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.col{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.col h4{margin:0 0 6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.col ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.col p+p{margin-top:6px}
+.msgs{display:grid;gap:10px}
+.msg{background:var(--creme);border-radius:4px 14px 14px 14px;padding:12px 14px 10px;display:grid;gap:8px;min-width:0}
+.msg-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.msg-when{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--terra)}
+.msg-text{font-size:14px;white-space:pre-line}
+.copy{font:600 12px var(--sans);color:var(--folha);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:5px 12px;cursor:pointer}
+.copy:hover{border-color:var(--folha)}
+.copy:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+.copy.ok{background:var(--folha);color:var(--on-dark);border-color:var(--folha)}
+.fill{background:var(--ouro-soft);color:var(--ouro);border-radius:3px;padding:0 3px;font-weight:600}
+.hint{font-size:13px;color:var(--muted)}
+
+/* Mapa ↔ recursos */
+.map-table{width:100%;border-collapse:collapse;font-size:14px}
+.map-table td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.map-table td:first-child{width:46%}
+.map-table td:nth-child(2){width:28px;color:var(--ouro);font-weight:700;text-align:center}
+.map-table tr:last-child td{border-bottom:0}
+.scroll-x{overflow-x:auto}
+
+/* Última página do guia (mock) */
+.lastpage-wrap{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:24px;align-items:start}
+.lastpage{background:var(--folha);color:var(--on-dark);border-radius:150px 150px 12px 12px;padding:46px 24px 24px;text-align:center;display:grid;gap:12px;box-shadow:0 18px 40px -24px rgba(40,30,20,.5)}
+.lastpage .k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
+.lastpage h4{font-family:var(--serif);font-size:28px;font-weight:600;margin:0;line-height:1.05}
+.lastpage .q{font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.3}
+.lastpage ul{list-style:none;padding:0;margin:0;display:grid;gap:5px;font-size:12.5px;text-align:left}
+.lastpage li::before{content:"✿ ";opacity:.8}
+.seal{justify-self:center;width:84px;height:84px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:700;line-height:1}
+.seal small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.12em;font-weight:600}
+.btn-mock{background:var(--on-dark);color:var(--folha);font-weight:700;font-size:13px;border-radius:99px;padding:11px 14px}
+.lastpage .foot{font-size:11px;opacity:.85}
+.anatomy{display:grid;gap:10px;counter-reset:a}
+.anatomy div{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:14px}
+.anatomy div::before{counter-increment:a;content:counter(a);width:26px;height:26px;border-radius:50%;background:var(--ouro-soft);color:var(--ouro);display:grid;place-items:center;font-weight:700;font-size:13px}
+.anatomy b{font-weight:600}
+
+/* Canais de distribuição */
+.channels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ch{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start}
+.ch .n{font-family:var(--serif);font-size:20px;font-weight:600}
+.ch .f{font-size:12px;font-weight:600;color:var(--folha)}
+.ch p{font-size:13.5px;color:var(--muted)}
+.cta-strip{margin-top:16px;background:var(--terra);color:var(--on-dark);border-radius:12px;padding:18px 20px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+.cta-strip .t{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;line-height:1.2}
+.cta-strip small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+
+/* Linha do tempo da abertura */
+.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.day{display:grid;gap:8px;align-content:start}
+.day .d{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--terra);line-height:1}
+.day .d span{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;display:block;margin-top:4px}
+.day .bar{height:6px;border-radius:3px;background:var(--terra-soft)}
+.day.hot .bar{background:var(--terra)}
+.day.start .bar{background:var(--folha)}
+.day.start .d{color:var(--folha)}
+.day p{font-size:13px;color:var(--muted)}
+details.all{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 16px}
+details.all summary{cursor:pointer;font-weight:600;padding:10px 0;color:var(--folha)}
+details.all .msgs{padding-bottom:14px}
+
+/* Conta */
+.calc{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;align-items:start}
+.ctrls{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:18px}
+.ctrl{display:grid;gap:6px}
+.ctrl label{display:flex;justify-content:space-between;font-size:13.5px;font-weight:500}
+.ctrl output{font-weight:700;color:var(--terra);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--terra)}
+.funnel{display:grid;gap:8px}
+.fbar{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;font-size:13px}
+.fbar .track{height:34px;background:var(--creme);border-radius:6px;overflow:hidden}
+.fbar .fillbar{height:100%;display:flex;align-items:center;padding:0 10px;font-weight:700;font-size:13px;color:var(--on-dark);white-space:nowrap;font-variant-numeric:tabular-nums;min-width:fit-content;transition:width .35s ease}
+.fb1 .fillbar{background:var(--folha)} .fb2 .fillbar{background:var(--terra)} .fb3 .fillbar{background:var(--ouro)}
+.total{margin-top:6px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.total div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.total .v{font-family:var(--serif);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.total .l{font-size:12px;color:var(--muted)}
+
+/* Checklist */
+.check{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+.ci{display:grid;grid-template-columns:22px 1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;align-items:start}
+.ci .box{width:18px;height:18px;border:1.5px solid var(--terra);border-radius:4px;margin-top:3px}
+.ci .w{font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}
+.ci .w b{display:block;color:var(--fg);font-weight:600}
+.decide{margin-top:28px;background:var(--ouro-soft);border-radius:12px;padding:18px 20px;display:grid;gap:8px}
+.decide h3{font-size:22px;color:var(--fg)}
+.decide ul{margin:0;padding-left:20px;display:grid;gap:4px;font-size:14px}
+footer{padding-block:48px 56px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:end}
+
+/* FUNIL */
+.fun{display:grid;gap:6px}
+.fl{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:center}
+.shape{justify-self:center;height:64px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--on-dark);clip-path:polygon(0 0,100% 0,calc(100% - 22px) 100%,22px 100%);padding:0 30px;text-align:center}
+.shape .n{font-family:var(--serif);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.shape .s{font-size:12px;font-weight:600;letter-spacing:.04em;line-height:1.2;text-align:left}
+.g .shape{background:var(--folha)}
+.g2 .shape{background:color-mix(in srgb,var(--folha) 82%,var(--terra))}
+.p .shape{background:var(--terra)}
+.o .shape{background:var(--ouro)}
+.fl-info{display:grid;gap:3px;min-width:0;font-size:13.5px}
+.fl-info b{font-weight:600}
+.fl-info .rate{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--terra)}
+.fl-info .m{color:var(--muted)}
+.fun-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;margin:6px 0}
+.fun-split span{justify-self:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--terra);border-top:1.5px dashed var(--terra);padding-top:6px;width:70%;text-align:center}
+.fun-note{margin-top:18px;font-size:13px;color:var(--muted)}
+
+/* FERRAMENTAS */
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;align-content:start}
+.thead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.thead h3{font-size:21px;display:flex;gap:10px;align-items:baseline}
+.thead h3 .sn{font-size:13px;font-family:var(--sans);font-weight:700;width:24px;height:24px;border-radius:50%;background:var(--folha);color:var(--on-dark);display:inline-grid;place-items:center;flex:none}
+.tcard.pd .thead h3 .sn{background:var(--terra)}
+.tcount{font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tcount.full{color:var(--folha)}
+.titem{display:grid;grid-template-columns:20px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.titem input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--folha);cursor:pointer}
+.titem .tn{font-weight:600;font-size:14px}
+.titem .td{display:block;font-size:13px;color:var(--muted)}
+.titem input:checked + span .tn{text-decoration:line-through;text-decoration-color:var(--muted)}
+.chips{display:inline-flex;gap:4px;margin-left:6px;vertical-align:1px}
+.chip{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:99px}
+.chip.e{background:var(--terra-soft);color:var(--terra)}
+.chip.op{background:var(--creme);color:var(--muted)}
+.chip.gr{background:var(--folha-soft);color:var(--folha)}
+.chip.pg{background:var(--ouro-soft);color:var(--ouro)}
+.tlegend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12.5px;color:var(--muted);margin-bottom:14px;align-items:center}
+
+/* VÍDEO DE VENDAS */
+.vflow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:22px}
+.vflow .vs{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:600}
+.vflow .vs.k{background:var(--terra);color:var(--on-dark);border-color:var(--terra)}
+.vflow .ar{color:var(--ouro);font-weight:700}
+.script{display:grid;gap:10px}
+.msg.scene{display:grid;grid-template-columns:110px minmax(0,1.5fr) minmax(0,1fr);gap:16px;border-radius:12px;background:var(--surface);border:1px solid var(--line);padding:16px 18px}
+.scene .when{display:grid;gap:4px;align-content:start}
+.scene .t{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--terra);line-height:1;font-variant-numeric:tabular-nums}
+.scene .nm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.scene .when .copy{justify-self:start;margin-top:6px}
+.scene .msg-text{font-family:var(--serif);font-size:19px;line-height:1.4;white-space:normal}
+.scene .tela{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:12px;display:grid;gap:6px;align-content:start}
+.scene .tela b{color:var(--fg);font-weight:600}
+.scene .ontxt{display:inline-block;background:var(--folha-soft);color:var(--folha);font-weight:600;border-radius:6px;padding:2px 8px}
+.script-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.vsetup{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.vsetup .col ul{font-size:13.5px}
+@media (max-width:860px){
+  .tools{grid-template-columns:1fr}
+  .msg.scene{grid-template-columns:1fr;gap:10px}
+  .scene .when{grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+  .scene .when .copy{margin-top:0}
+  .vsetup{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .hero-grid,.lastpage-wrap,.calc{grid-template-columns:1fr}
+  .stations{grid-template-columns:repeat(2,1fr);row-gap:26px}
+  .station:nth-child(2)::after{display:none}
+  .channels{grid-template-columns:1fr 1fr}
+  .timeline{grid-template-columns:repeat(5,minmax(120px,1fr));overflow-x:auto;padding-bottom:6px}
+  .check{grid-template-columns:1fr}
+  .lastpage{max-width:320px}
+}
+@media (max-width:560px){
+  .cols,.bridge,.channels{grid-template-columns:1fr}
+  .step{grid-template-columns:40px 1fr;gap:0 12px}
+  .dot{width:40px;height:40px;font-size:20px}
+  .step::before{left:19px;top:40px}
+  .step-title h3{font-size:23px}
+  .arch .nm{font-size:19px}
+  .fbar{grid-template-columns:92px 1fr}
+  .free-paid{display:none}
+  .fl,.fun-split{grid-template-columns:1fr;gap:8px}
+  .fl{margin-bottom:12px}
+  .shape{height:56px;padding:0 26px}
+  .shape .n{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){.fbar .fillbar{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="kicker">Estratégia de vendas · Sheila Nascimento</p>
+      <h1>O caminho <em>do Jardim</em></h1>
+      <p class="sub">Uma coisa grátis só: o Guia De volta ao Jardim. Todo conteúdo leva para ele, e a última página dele leva para a turma paga de 21 dias.</p>
+      <p style="margin-top:14px"><a href="checklist.pdf" style="color:var(--terra);font-weight:600">Baixar o checklist da Sheila em PDF →</a> · <a href="checklist.html" style="color:var(--terra);font-weight:600">ver online</a></p>
+    </div>
+    <div class="hero-note">
+      <p><strong>Para quem é:</strong> mulheres de 30 a 50 anos, empreendedoras, de rotina corrida, que amam a Deus mas só O encontram no culto e vivem com culpa.</p>
+      <p><strong>A frase que ela precisa sair dizendo:</strong> "Eu consigo ter um encontro com Deus, mesmo com a minha vida. Mas sozinha eu esqueço."</p>
+    </div>
+  </div>
+</header>
+
+<!-- FUNIL -->
+<section id="funil" aria-labelledby="t-funil">
+  <div class="sec-head">
+    <p class="kicker">O funil</p>
+    <h2 id="t-funil">Do Reels até a compra, etapa por etapa</h2>
+    <p class="lead">Cada faixa é uma etapa, com quantas pessoas chegam até ela e o número que a Sheila acompanha. Se uma etapa ficar abaixo da taxa esperada, é ali que se mexe primeiro.</p>
+  </div>
+  <div class="fun">
+    <div class="fl g"><div class="shape" style="width:100%"><span class="n">8.000</span><span class="s">veem os<br>Reels e stories</span></div>
+      <div class="fl-info"><span class="rate">Topo · alcance</span><b>Conteúdo sobre o Jardim</b><span class="m">Medir: views por Reels. Se estiver baixo, testar novos ganchos.</span></div></div>
+    <div class="fl g"><div class="shape" style="width:86%"><span class="n">250</span><span class="s">comentam<br>METAMORFOSE</span></div>
+      <div class="fl-info"><span class="rate">~3% de quem vê</span><b>Ela chama</b><span class="m">Medir: comentários com a palavra. Se estiver baixo, a CTA não está clara ou o guia não parece valer a pena.</span></div></div>
+    <div class="fl g2"><div class="shape" style="width:73%"><span class="n">200</span><span class="s">recebem o guia<br>no WhatsApp</span></div>
+      <div class="fl-info"><span class="rate">80% de quem comenta</span><b>Passa o número e recebe o PDF</b><span class="m">Medir: contatos com a etiqueta "Jardim · baixou". Se estiver baixo, responder o direct mais rápido.</span></div></div>
+    <div class="fl g2"><div class="shape" style="width:61%"><span class="n">100</span><span class="s">chegam ao<br>Mapa do Jardim</span></div>
+      <div class="fl-info"><span class="rate">50% de quem baixa</span><b>Faz os 7 dias</b><span class="m">Medir: respostas às mensagens do dia 2 e do dia 5. Se estiver baixo, reforçar a porta de 1 minuto.</span></div></div>
+    <div class="fun-split"><span>Link de vendas</span><span aria-hidden="true" style="border:0"></span></div>
+    <div class="fl p"><div class="shape" style="width:53%"><span class="n">50</span><span class="s">assistem ao<br>vídeo de vendas</span></div>
+      <div class="fl-info"><span class="rate">50% de quem chega ao Mapa</span><b>Toca no botão da última página e vê o convite no YouTube</b><span class="m">Medir: views do vídeo no YouTube Studio. Se estiver baixo, a última página não está chamando para o vídeo.</span></div></div>
+    <div class="fl p"><div class="shape" style="width:45%"><span class="n">30</span><span class="s">abrem o checkout<br>da Greenn</span></div>
+      <div class="fl-info"><span class="rate">60% de quem assiste</span><b>Toca no link abaixo do vídeo</b><span class="m">Medir: visitas no checkout (o painel da Greenn mostra). Se estiver baixo, ajustar o vídeo, a partir da cena da oferta.</span></div></div>
+    <div class="fl p"><div class="shape" style="width:37%"><span class="n">20</span><span class="s">compram<br>R$ 47</span></div>
+      <div class="fl-info"><span class="rate">10% de quem baixou o guia</span><b>Acesso Diário ao Jardim · R$ 940</b><span class="m">Conta junto quem compra pelo guia e pelas mensagens de abertura (1º a 6/12). Se o clique for alto e a compra baixa, olhar o preço e o checkout.</span></div></div>
+    <div class="fl o"><div class="shape" style="width:27%"><span class="n">6</span><span class="s">Metamorfose<br>R$ 397</span></div>
+      <div class="fl-info"><span class="rate">30% de quem conclui</span><b>Mentoria em fevereiro · R$ 2.382</b><span class="m">Medir: quem concluiu os 21 dias e mandou depoimento.</span></div></div>
+  </div>
+  <p class="fun-note">Todas as taxas são hipóteses para a turma 1. Depois dela, troque pelos números reais e use a calculadora mais abaixo para planejar a turma 2.</p>
+</section>
+
+<!-- VISÃO GERAL -->
+<section id="visao" aria-labelledby="t-visao">
+  <div class="sec-head">
+    <p class="kicker">Visão geral</p>
+    <h2 id="t-visao">Quatro estações, uma porta de cada vez</h2>
+  </div>
+  <div class="free-paid" aria-hidden="true"><span>← grátis</span><span>pago →</span></div>
+  <div class="stations">
+    <div class="station s1">
+      <div class="arch">
+        <svg viewBox="0 0 54 54" fill="none" aria-hidden="true"><rect x="12" y="6" width="30" height="42" rx="6" stroke="currentColor" stroke-width="2.4"/><path d="M23 20l10 7-10 7z" fill="currentColor"/></svg>
+        <span class="nm">Instagram</span><span class="price">GRÁTIS</span>
+      </div>
+      <p class="what"><b>Reels, stories e fixado</b> sobre o Jardim, todos com a mesma chamada.</p>
+    </div>
+    <div class="station s2">
+      <div class="arch">
+        <svg viewBox="0 0 54 54" fill="none" aria-hidden="true"><path d="M27 12c-6-5-14-5-19-3v32c5-2 13-2 19 3 6-5 14-5 19-3V9c-5-2-13-2-19 3z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M27 12v32" stroke="currentColor" stroke-width="2.4"/></svg>
+        <span class="nm">Guia De volta ao Jardim</span><span class="price">GRÁTIS</span>
+      </div>
+      <p class="what"><b>7 dias no tempo dela</b>, com o Mapa do Jardim e o convite na última página.</p>
+    </div>
+    <div class="station s3">
+      <div class="arch">
+        <svg viewBox="0 0 54 54" fill="none" aria-hidden="true"><circle cx="27" cy="22" r="8" stroke="currentColor" stroke-width="2.4"/><path d="M27 5v5M27 34v15M10 22h5M39 22h5M15 10l3.5 3.5M39 10l-3.5 3.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M27 42c-4-4-9-4-12-2M27 42c4-4 9-4 12-2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span class="nm">Acesso Diário ao Jardim</span><span class="price">R$ 47</span>
+      </div>
+      <p class="what"><b>21 dias em grupo</b> com áudio às 6h, lembrete às 19h e 3 encontros ao vivo.</p>
+    </div>
+    <div class="station s4">
+      <div class="arch">
+        <svg viewBox="0 0 54 54" fill="none" aria-hidden="true"><path d="M27 16v26" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M27 22c-4-9-17-11-18-3s9 10 18 6c-8 3-12 12-6 14s7-8 6-14M27 22c4-9 17-11 18-3s-9 10-18 6c8 3 12 12 6 14s-7-8-6-14" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        <span class="nm">Metamorfose em Deus</span><span class="price">R$ 397</span>
+      </div>
+      <p class="what"><b>Mentoria em grupo</b> para quem concluiu os 21 dias. Fevereiro.</p>
+    </div>
+  </div>
+  <div class="bridge">
+    <div><b>Instagram → Guia</b>Ela comenta METAMORFOSE e recebe o guia no WhatsApp.</div>
+    <div><b>Guia → Acesso Diário</b>O Mapa mostra o que falta, e a última página oferece exatamente isso.</div>
+    <div><b>Acesso Diário → Metamorfose</b>No dia 21, quem mudou quer ir mais fundo.</div>
+  </div>
+</section>
+
+<!-- DISTRIBUIÇÃO -->
+<section id="distribuicao" aria-labelledby="t-dist">
+  <div class="sec-head">
+    <p class="kicker">Distribuição do guia</p>
+    <h2 id="t-dist">Onde o guia aparece</h2>
+    <p class="lead">Todos os canais repetem a mesma chamada. Uma palavra só deixa fácil de lembrar e fácil de medir: cada comentário é uma pessoa que pediu o guia.</p>
+  </div>
+  <div class="channels">
+    <div class="ch"><span class="n">Reels</span><span class="f">3 roteiros prontos · 19 a 25/11</span><p>"Adão tinha trabalho", "Marta ou Maria?" e "15 minutos em 3 passos". Depois, 2 a 3 por semana até 6/12.</p></div>
+    <div class="ch"><span class="n">Stories</span><span class="f">Todo dia · 26/11 a 06/12</span><p>A novela da rotina, com caixa de pergunta e figurinha "Comenta METAMORFOSE". Mostrar prints de quem já está lendo.</p></div>
+    <div class="ch"><span class="n">Post fixado</span><span class="f">3º fixado do perfil</span><p>Carrossel do convite: o que tem no guia, para quem é e como pedir.</p></div>
+    <div class="ch"><span class="n">Bio</span><span class="f">Linha da CTA</span><p>"Comenta METAMORFOSE em qualquer post e receba o guia grátis."</p></div>
+    <div class="ch"><span class="n">Status do WhatsApp</span><span class="f">O canal que ela já usa</span><p>Foi onde ela sempre vendeu. Prints das páginas do guia com "Me manda JARDIM aqui que eu te envio".</p></div>
+    <div class="ch"><span class="n">Igreja e conhecidas</span><span class="f">Público quente</span><p>Mandar para quem já pede oração e estudo a ela. Pedir que repassem para uma amiga de vida corrida.</p></div>
+  </div>
+  <div class="cta-strip">
+    <div><small>A chamada única</small><div class="t">"Comenta METAMORFOSE que eu te mando o guia De volta ao Jardim."</div></div>
+  </div>
+</section>
+
+<!-- JORNADA -->
+<section id="jornada" aria-labelledby="t-jornada">
+  <div class="sec-head">
+    <p class="kicker">A jornada passo a passo</p>
+    <h2 id="t-jornada">Da pessoa chamar até a compra</h2>
+    <p class="lead">Em cada passo: o que ela vive, o que você faz e a mensagem pronta. Troque o que está <span class="fill">em destaque</span> antes de usar.</p>
+  </div>
+
+  <div class="journey">
+
+    <div class="step">
+      <div class="dot">1</div>
+      <div class="step-body">
+        <div class="step-title"><h3>Ela chama</h3><span class="tag">Instagram · grátis</span></div>
+        <div class="cols">
+          <div class="col"><h4>O que ela faz</h4><p>Vê um Reels sobre o Jardim, se reconhece e comenta METAMORFOSE (ou responde o story, ou manda JARDIM no WhatsApp).</p></div>
+          <div class="col"><h4>O que você faz</h4><p>Responde o comentário em público ("Te mandei no direct 🌿") e envia o direct pedindo o WhatsApp. Pode ser à mão nas primeiras semanas ou no ManyChat.</p><p class="hint">Pedir o WhatsApp é o que monta a lista para abrir a turma.</p></div>
+        </div>
+        <div class="msgs">
+          <div class="msg"><div class="msg-top"><span class="msg-when">Direct · na hora</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">Que alegria você querer voltar ao Jardim! 🌿 O guia é gratuito e eu te mando pelo WhatsApp, junto com uns lembretes carinhosos durante os 7 dias. Me passa o seu número com DDD?</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">2</div>
+      <div class="step-body">
+        <div class="step-title"><h3>Ela recebe o guia</h3><span class="tag">WhatsApp · grátis</span></div>
+        <div class="cols">
+          <div class="col"><h4>O que ela recebe</h4><p>O PDF do guia (ou o link para baixar) e a orientação de por onde começar.</p></div>
+          <div class="col"><h4>O que você faz</h4><ul><li>Salva o contato com a etiqueta <b>Jardim · baixou</b>.</li><li>Pede que ela salve o seu número: a lista de transmissão só chega a quem salvou.</li><li>Anota nome, data e de onde veio (Reels, story, status).</li></ul></div>
+        </div>
+        <div class="msgs">
+          <div class="msg"><div class="msg-top"><span class="msg-when">Na entrega</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">Que alegria te ver aqui! 🌿 Aqui está o seu Guia De volta ao Jardim: <span class="fill">[PDF]</span>. Comece pela página "Querida, respira". Escolha a porta que cabe no seu dia: 10, 5 ou 1 minuto. Todas contam.
+Salva o meu número para receber os lembretes, tá? 💛</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">3</div>
+      <div class="step-body">
+        <div class="step-title"><h3>Ela faz os 7 dias</h3><span class="tag">No tempo dela · grátis</span></div>
+        <div class="cols">
+          <div class="col"><h4>O que ela vive</h4><p>Um encontro por dia, sem culpa. Cada dia tem uma pergunta de valor e uma pergunta-ponte que mostra, com as palavras dela, que sozinha é mais difícil.</p></div>
+          <div class="col"><h4>O que você faz</h4><p>Duas mensagens de acompanhamento. É aqui que ela sente a diferença entre ler sozinha e ter alguém lembrando.</p></div>
+        </div>
+        <div class="msgs">
+          <div class="msg"><div class="msg-top"><span class="msg-when">2 dias depois</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">Passando para saber: como foi o seu primeiro encontro no Jardim? Se a semana apertou, lembra: a porta de 1 minuto também é encontro. 💛</p></div>
+          <div class="msg"><div class="msg-top"><span class="msg-when">5 dias depois</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">Você já está quase no fim! No dia 7 tem o Mapa do Jardim. Responda com carinho: ele vai te mostrar o seu próximo passo.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="dot">4</div>
+      <div class="step-body">
+        <div class="step-title"><h3>Ela se vê no Mapa do Jardim</h3><span class="tag">Dia 7 · grátis</span></div>
+        <p class="lead">Ela dá nota de 0 a 10 para os 7 temas e marca o que falta para ser constante. Cada item que ela marca é um recurso da turma paga.</p>
+        <div class="col scroll-x">
+          <table class="map-table">
+            <tbody>
+              <tr><td>"Alguém me lembrando todo dia"</td><td>→</td><td>Mensagem às 6h e lembrete às 19h</td></tr>
+              <tr><td>"Um áudio para ouvir no caminho"</td><td>→</td><td>Áudio de 5 minutos com a voz da Sheila</td></tr>
+              <tr><td>"Companhia, não fazer sozinha"</td><td>→</td><td>Grupo da turma: "Estive no Jardim 🌿"</td></tr>
+              <tr><td>"Entender melhor a Bíblia"</td><td>→</td><td>Aula bônus "Como ler a Bíblia sozinha em 15 minutos"</td></tr>
+              <tr><td>"Tirar dúvidas e orar junto"</td><td>→</td><td>3 encontros ao vivo de 40 minutos</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="step paid">
+      <div class="dot">5</div>
+      <div class="step-body">
+        <div class="step-title"><h3>A última página leva ao vídeo e à compra</h3><span class="tag">YouTube + Greenn</span></div>
+        <div class="lastpage-wrap">
+          <div class="lastpage" role="img" aria-label="Exemplo da última página do guia, com a oferta de R$ 47 e o botão para entrar na turma">
+            <span class="k">Seu próximo passo</span>
+            <h4>Acesso Diário ao Jardim</h4>
+            <p class="q">Marcou no Mapa que falta alguém te lembrando? Eu te mando todo dia às 6h.</p>
+            <ul><li>21 dias comigo, em grupo</li><li>Áudio às 6h e lembrete às 19h</li><li>3 encontros ao vivo</li><li>Planner + aula bônus</li></ul>
+            <div class="seal"><div>R$ 47<small>FUNDADORAS</small></div></div>
+            <div class="btn-mock">▶ Assistir ao meu convite (3 min)</div>
+            <span class="foot">Turma começa em [7/12] · Já decidiu? Entre direto: [link Greenn]</span>
+          </div>
+          <div class="anatomy">
+            <div><p><b>Responde ao Mapa.</b> Começa com o que ela acabou de marcar, nas palavras dela.</p></div>
+            <div><p><b>Mostra o que muda.</b> O conteúdo é novo: os 7 dias do guia não se repetem. Ela paga para não largar de novo, não para ler mais.</p></div>
+            <div><p><b>Preço com motivo.</b> R$ 47 para as fundadoras, R$ 67 depois de 2 ou 3 turmas.</p></div>
+            <div><p><b>Um botão principal.</b> Leva ao vídeo de vendas no YouTube (não listado), e o link da Greenn fica logo abaixo do vídeo. Para quem já decidiu, uma linha pequena com o link direto da Greenn. A página tem o QR code do vídeo para quem imprimiu.</p></div>
+            <div><p><b>Data na página.</b> "Turma começa em 7/12" dá prazo. Quem baixar depois vê a próxima turma: atualizar o PDF a cada turma.</p></div>
+            <div><p><b>Garantia.</b> 7 dias para desistir e receber o valor de volta, na compra online.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step side">
+      <div class="dot">↺</div>
+      <div class="step-body">
+        <div class="step-title"><h3>Se ela não comprou pelo guia</h3><span class="tag">Abertura da turma</span></div>
+        <p class="lead">Toda a lista "Jardim · baixou" recebe a sequência de abertura de 1º a 6/12 (as datas e as mensagens estão logo abaixo). Quem não entrar segue com o guia e é avisada da turma de janeiro.</p>
+      </div>
+    </div>
+
+    <div class="step paid">
+      <div class="dot">6</div>
+      <div class="step-body">
+        <div class="step-title"><h3>Ela compra e entra na turma</h3><span class="tag">R$ 47 · 21 dias</span></div>
+        <div class="cols">
+          <div class="col"><h4>O que acontece</h4><ul><li>Recebe as boas-vindas e o link da Comunidade (Avisos + Conversa).</li><li>7/12, às 6h: primeiro áudio.</li><li>Semanas: Cuidar do Jardim · Ouvir a voz · Florescer.</li></ul></div>
+          <div class="col"><h4>No dia 21</h4><p>Selo "21 dias no Jardim", pedido de depoimento e o convite para a Metamorfose em Deus (fevereiro).</p><p class="hint">Os depoimentos abrem a turma 2, em janeiro.</p></div>
+        </div>
+        <div class="msgs">
+          <div class="msg"><div class="msg-top"><span class="msg-when">Na compra</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">Bem-vinda ao Acesso Diário ao Jardim! 🌿 Entre na nossa Comunidade por aqui: <span class="fill">[link]</span>. No dia <span class="fill">[7/12]</span>, às 6h, chega o primeiro áudio. Até lá, escolha o seu horário de Jardim e coloque o alarme.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FERRAMENTAS -->
+<section id="ferramentas" aria-labelledby="t-ferr">
+  <div class="sec-head">
+    <p class="kicker">Ferramentas</p>
+    <h2 id="t-ferr">O que usar em cada passo</h2>
+    <p class="lead">Marque o que já está pronto. As marcações ficam salvas só neste navegador. Para a turma 1, comece pelas essenciais: as opcionais entram quando o volume crescer.</p>
+  </div>
+  <div class="tlegend"><span class="chip e">Essencial</span><span class="chip op">Opcional</span><span class="chip gr">Grátis</span><span class="chip pg">Taxa por venda</span></div>
+  <div class="tools">
+
+    <div class="tcard"><div class="thead"><h3><span class="sn">1</span>Conteúdo e divulgação</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t1a"><span><span class="tn">Instagram</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Reels, stories, post fixado e a linha da CTA na bio.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t1b"><span><span class="tn">Celular + tripé e luz</span><span class="chips"><span class="chip e">Essencial</span></span><span class="td">Gravar os Reels com o rosto dela e boa luz, de frente para a janela já serve.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t1c"><span><span class="tn">CapCut ou o editor do Instagram</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Cortar, legendar e colocar o texto do gancho.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t1d"><span><span class="tn">Canva</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Capas dos Reels, carrossel do fixado e prints do guia para o status.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t1e"><span><span class="tn">Meta Business Suite</span><span class="chips"><span class="chip op">Opcional</span><span class="chip gr">Grátis</span></span><span class="td">Agendar os posts da semana e ver as views de cada Reels.</span></span></label>
+    </div>
+
+    <div class="tcard"><div class="thead"><h3><span class="sn">2</span>Ela chama</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t2a"><span><span class="tn">Respostas salvas do Instagram</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">A mensagem do direct pronta com um atalho, para responder rápido à mão.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t2b"><span><span class="tn">ManyChat</span><span class="chips"><span class="chip op">Opcional</span><span class="chip gr">Plano grátis</span></span><span class="td">Responde sozinho quem comenta METAMORFOSE. Vale quando passar de uns 20 comentários por dia.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t2c"><span><span class="tn">Alarme 2 vezes por dia</span><span class="chips"><span class="chip e">Essencial</span></span><span class="td">Se a resposta for à mão: olhar comentários e direct de manhã e à noite.</span></span></label>
+    </div>
+
+    <div class="tcard"><div class="thead"><h3><span class="sn">3</span>Ela recebe o guia</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t3a"><span><span class="tn">WhatsApp Business</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Número dedicado, perfil com foto e descrição, catálogo com o guia.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t3b"><span><span class="tn">Etiqueta "Jardim · baixou"</span><span class="chips"><span class="chip e">Essencial</span></span><span class="td">Marcar cada pessoa que recebeu o guia. É a lista da abertura da turma.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t3c"><span><span class="tn">Resposta rápida /guia</span><span class="chips"><span class="chip e">Essencial</span></span><span class="td">A mensagem de entrega com o PDF anexado, enviada com um atalho.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t3d"><span><span class="tn">Google Drive</span><span class="chips"><span class="chip op">Opcional</span><span class="chip gr">Grátis</span></span><span class="td">Guardar o PDF e mandar o link, caso o arquivo fique pesado para o WhatsApp.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t3e"><span><span class="tn">Planilha do funil (Google Sheets)</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Nome, WhatsApp, data, de onde veio (Reels, story, status) e se comprou.</span></span></label>
+    </div>
+
+    <div class="tcard"><div class="thead"><h3><span class="sn">4</span>Ela faz os 7 dias</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t4a"><span><span class="tn">Lista de transmissão do WhatsApp</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Mandar as mensagens do dia 2 e do dia 5 para várias de uma vez. Só chega a quem salvou o número dela.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t4b"><span><span class="tn">Google Agenda</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Lembrete para a Sheila: "mandar dia 2" e "mandar dia 5" para quem baixou em cada data.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t4c"><span><span class="tn">Colunas "dia 2" e "dia 5" na planilha</span><span class="chips"><span class="chip op">Opcional</span></span><span class="td">Marcar quem respondeu. Mostra quantas chegam ao Mapa.</span></span></label>
+    </div>
+
+    <div class="tcard pd"><div class="thead"><h3><span class="sn">5</span>A última página e o link</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t5a"><span><span class="tn">Canva, exportado em PDF</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Montar o guia e conferir se o botão da última página fica clicável no PDF.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t5d"><span><span class="tn">YouTube, vídeo não listado</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Hospeda o vídeo de vendas. Só quem tem o link assiste. O link da Greenn fica na primeira linha da descrição.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t5b"><span><span class="tn">QR code do vídeo</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Gerado no próprio Canva, para quem imprimir o guia.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t5c"><span><span class="tn">Link com nome fácil</span><span class="chips"><span class="chip op">Opcional</span></span><span class="td">Um link curto que dá para falar em vídeo e trocar o destino na turma 2 sem refazer o PDF.</span></span></label>
+    </div>
+
+    <div class="tcard pd"><div class="thead"><h3><span class="sn">6</span>A compra</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t6a"><span><span class="tn">Greenn</span><span class="chips"><span class="chip e">Essencial</span><span class="chip pg">Taxa por venda</span></span><span class="td">Checkout do Acesso Diário ao Jardim: R$ 47 no Pix e no cartão, garantia de 7 dias e relatório de visitas e vendas.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t6b"><span><span class="tn">Compra de teste</span><span class="chips"><span class="chip e">Essencial</span></span><span class="td">Comprar, receber o e-mail de acesso e o link da Comunidade, depois pedir o reembolso.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t6c"><span><span class="tn">Página de obrigado com o link da Comunidade</span><span class="chips"><span class="chip e">Essencial</span></span><span class="td">Quem paga já entra no grupo sem depender da Sheila responder.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t6d"><span><span class="tn">Pix direto (alternativa)</span><span class="chips"><span class="chip op">Opcional</span><span class="chip gr">Sem taxa</span></span><span class="td">Só para a turma 1, se ainda não tiver plataforma. Exige conferir cada comprovante à mão.</span></span></label>
+    </div>
+
+    <div class="tcard pd"><div class="thead"><h3><span class="sn">7</span>A turma de 21 dias</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t7a"><span><span class="tn">Comunidade do WhatsApp</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Grupo "Avisos" (só ela envia) e grupo "Conversa" ("Estive no Jardim 🌿").</span></span></label>
+      <label class="titem"><input type="checkbox" id="t7b"><span><span class="tn">Gravador do celular</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Áudios de 5 minutos. Gravar a semana de uma vez, num lugar silencioso.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t7c"><span><span class="tn">Canva</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Cartões diários, planner dos 21 dias e o selo "21 dias no Jardim".</span></span></label>
+      <label class="titem"><input type="checkbox" id="t7d"><span><span class="tn">Google Meet</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Os 3 encontros ao vivo de 40 minutos, com link fixo enviado na véspera.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t7e"><span><span class="tn">Área de membros ou Drive</span><span class="chips"><span class="chip op">Opcional</span></span><span class="td">Guardar a aula bônus, o planner e as gravações dos encontros num lugar só.</span></span></label>
+    </div>
+
+    <div class="tcard pd"><div class="thead"><h3><span class="sn">8</span>Depois: Metamorfose</h3><span class="tcount"></span></div>
+      <label class="titem"><input type="checkbox" id="t8a"><span><span class="tn">Google Forms</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">No dia 21: o que mudou, depoimento com autorização e interesse na Metamorfose.</span></span></label>
+      <label class="titem"><input type="checkbox" id="t8b"><span><span class="tn">Insights do Instagram + relatório do checkout</span><span class="chips"><span class="chip e">Essencial</span><span class="chip gr">Grátis</span></span><span class="td">Trocar as hipóteses do funil pelos números reais da turma 1.</span></span></label>
+    </div>
+
+  </div>
+</section>
+
+<!-- VÍDEO DE VENDAS -->
+<section id="video" aria-labelledby="t-video">
+  <div class="sec-head">
+    <p class="kicker">Vídeo de vendas</p>
+    <h2 id="t-video">O convite da Sheila, em 3 minutos</h2>
+    <p class="lead">Fica no fim do guia e vende o próximo passo. Quem assiste já fez os 7 dias e já conhece a Sheila, então o vídeo não precisa convencer do zero: começa onde ela está, no Mapa do Jardim, e termina num convite só.</p>
+  </div>
+  <div class="vflow" aria-label="Caminho do vídeo até a turma">
+    <span class="vs">Última página do guia</span><span class="ar">→</span>
+    <span class="vs">YouTube (não listado)</span><span class="ar">→</span>
+    <span class="vs k">Checkout Greenn · R$ 47</span><span class="ar">→</span>
+    <span class="vs">Página de obrigado</span><span class="ar">→</span>
+    <span class="vs">Comunidade da turma</span>
+  </div>
+
+  <div class="script-actions"><button class="copy" type="button" id="copy-all">Copiar o roteiro inteiro</button><span class="hint">Cerca de 430 palavras faladas, uns 3 minutos. Troque o que está <span class="fill">em destaque</span> pelos fatos reais dela.</span></div>
+  <div class="script">
+    <div class="msg scene"><div class="when"><span class="t">0:00</span><span class="nm">Acolhida</span><button class="copy" type="button">Copiar</button></div>
+      <p class="msg-text">Oi, querida. Se você chegou até aqui, você passou pelos 7 dias do guia. Ou por alguns deles. E deixa eu te dizer uma coisa: todos contam.</p>
+      <div class="tela"><span><b>Imagem:</b> a Sheila de frente, luz da janela, Bíblia no colo.</span><span><b>Texto na tela:</b> <span class="ontxt">Você chegou ao fim do guia 🌿</span></span></div></div>
+
+    <div class="msg scene"><div class="when"><span class="t">0:15</span><span class="nm">O Mapa</span><button class="copy" type="button">Copiar</button></div>
+      <p class="msg-text">Agora volta comigo no Mapa do Jardim. No fim, você marcou o que falta para você ser constante. Talvez tenha marcado "alguém me lembrando". Ou "companhia". Ou só pensou: sozinha eu esqueço.</p>
+      <div class="tela"><span><b>Imagem:</b> close nas mãos dela mostrando a página do Mapa, impressa ou no celular.</span><span><b>Texto na tela:</b> <span class="ontxt">O que você marcou no Mapa?</span></span></div></div>
+
+    <div class="msg scene"><div class="when"><span class="t">0:40</span><span class="nm">A história</span><button class="copy" type="button">Copiar</button></div>
+      <p class="msg-text">Eu sei como é. Eu comecei os meus devocionais num banco de ônibus, <span class="fill">[indo para o trabalho, às 5 da manhã]</span>. Não era o lugar perfeito, nem a hora perfeita. Mas era o meu encontro com Deus. E o que me fez continuar foi <span class="fill">[ter um horário certo e alguém caminhando comigo]</span>.</p>
+      <div class="tela"><span><b>Imagem:</b> foto dela daquela época, ou a janela de um ônibus. Volta para o rosto dela.</span><span><b>Texto na tela:</b> <span class="ontxt">O meu jardim era um banco de ônibus</span></span></div></div>
+
+    <div class="msg scene"><div class="when"><span class="t">1:10</span><span class="nm">O dia 8</span><button class="copy" type="button">Copiar</button></div>
+      <p class="msg-text">O guia te mostrou que dá, mesmo com a sua vida. O difícil não é começar. É o dia 8. Quando ninguém lembra, a semana aperta e a culpa volta. Foi pensando no dia 8 que eu criei o próximo passo.</p>
+      <div class="tela"><span><b>Imagem:</b> o rosto dela, mais perto, tom de conversa.</span><span><b>Texto na tela:</b> <span class="ontxt">O difícil é o dia 8</span></span></div></div>
+
+    <div class="msg scene"><div class="when"><span class="t">1:35</span><span class="nm">A oferta</span><button class="copy" type="button">Copiar</button></div>
+      <p class="msg-text">Ele se chama Acesso Diário ao Jardim. São 21 dias comigo, em grupo, começando no dia <span class="fill">[7 de dezembro]</span>. Todo dia, às 6 da manhã, chega no seu WhatsApp um áudio meu de 5 minutos, o cartão do dia e uma frase para levar. Às 7 da noite, na viração do dia, eu te lembro: se o dia não deixou, o Jardim ainda está aberto. Toda semana a gente se encontra ao vivo por 40 minutos, para orar e tirar dúvidas. E você ganha o planner dos 21 dias e a aula "Como ler a Bíblia sozinha em 15 minutos". É tudo novo: nada do guia se repete.</p>
+      <div class="tela"><span><b>Imagem:</b> o celular mostrando o grupo com o áudio e o cartão, o planner aberto e a tela de um encontro ao vivo.</span><span><b>Texto na tela, um por vez:</b> <span class="ontxt">6h · áudio de 5 min</span> <span class="ontxt">19h · lembrete</span> <span class="ontxt">3 encontros ao vivo</span> <span class="ontxt">planner + aula bônus</span></span></div></div>
+
+    <div class="msg scene"><div class="when"><span class="t">2:25</span><span class="nm">Preço e garantia</span><button class="copy" type="button">Copiar</button></div>
+      <p class="msg-text">Um devocional só em PDF costuma custar de 50 a 67 reais. Na turma fundadora, você tem 21 dias de acompanhamento comigo por 47 reais, no Pix ou no cartão. E se nos 7 primeiros dias você sentir que não é para você, é só pedir o seu dinheiro de volta.</p>
+      <div class="tela"><span><b>Imagem:</b> o selo de R$ 47, feito no Canva, por cima do vídeo dela.</span><span><b>Texto na tela:</b> <span class="ontxt">R$ 47 · turma fundadora · 7 dias de garantia</span></span></div></div>
+
+    <div class="msg scene"><div class="when"><span class="t">2:50</span><span class="nm">O convite</span><button class="copy" type="button">Copiar</button></div>
+      <p class="msg-text">Para entrar, toca no link aqui embaixo do vídeo. Você escolhe Pix ou cartão e já recebe o acesso ao grupo. As inscrições fecham no dia <span class="fill">[6 de dezembro, às 9 da noite]</span>. Eu te espero no Jardim, querida.</p>
+      <div class="tela"><span><b>Imagem:</b> a Sheila sorrindo, com um gesto para baixo.</span><span><b>Texto na tela:</b> <span class="ontxt">Toque no link abaixo do vídeo 👇</span></span></div></div>
+  </div>
+
+  <div class="vsetup">
+    <div class="col"><h4>Para gravar</h4><ul>
+      <li>Na vertical (9:16): o mesmo vídeo serve nos stories da abertura da turma.</li>
+      <li>De frente para a janela, celular no tripé, na altura dos olhos.</li>
+      <li>Ler pelo app de teleprompter do celular, cena por cena. Errou, regrava só a cena.</li>
+      <li>Microfone de lapela, se tiver. Se não tiver, um cômodo sem eco.</li>
+      <li>Legendas e textos na tela no CapCut.</li>
+    </ul></div>
+    <div class="col"><h4>No YouTube</h4><ul>
+      <li>Visibilidade: <b>Não listado</b>.</li>
+      <li>Título: "Acesso Diário ao Jardim · convite da Sheila".</li>
+      <li>Primeira linha da descrição: "Entre na turma: [link Greenn]".</li>
+      <li>Comentário fixado com o mesmo link.</li>
+      <li>Miniatura no Canva, com o rosto dela e as cores do guia.</li>
+    </ul></div>
+    <div class="col"><h4>Na Greenn</h4><ul>
+      <li>Produto "Acesso Diário ao Jardim", R$ 47, Pix e cartão.</li>
+      <li>Garantia de 7 dias.</li>
+      <li>Depois da compra, a página de obrigado com o link da Comunidade.</li>
+      <li>Compra de teste antes de divulgar, e depois pedir o reembolso.</li>
+      <li>O link da Greenn vai no vídeo, na linha pequena da última página e nas mensagens da abertura.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ABERTURA -->
+<section id="abertura" aria-labelledby="t-abertura">
+  <div class="sec-head">
+    <p class="kicker">Abertura da turma 1</p>
+    <h2 id="t-abertura">Seis dias de convite para toda a lista</h2>
+    <p class="lead">Para todas que baixaram o guia, compraram ou não. Fecha no dia 6, às 21h.</p>
+  </div>
+  <div class="timeline">
+    <div class="day hot"><div class="d">1º/12<span>Abertura</span></div><div class="bar"></div><p>"Sozinha eu esqueço": o que vocês me disseram depois do Mapa.</p></div>
+    <div class="day"><div class="d">3/12<span>Prova</span></div><div class="bar"></div><p>Depoimento de quem fez os 7 dias.</p></div>
+    <div class="day"><div class="d">5/12<span>Dúvidas</span></div><div class="bar"></div><p>"E se eu não conseguir todo dia?" e outras.</p></div>
+    <div class="day hot"><div class="d">6/12<span>Último dia</span></div><div class="bar"></div><p>Fecha às 21h. Amanhã às 6h chega o 1º áudio.</p></div>
+    <div class="day start"><div class="d">7/12<span>Turma começa</span></div><div class="bar"></div><p>Aviso para quem ficou de fora: próxima turma em janeiro.</p></div>
+  </div>
+  <details class="all">
+    <summary>Ver as 5 mensagens da abertura</summary>
+    <div class="msgs">
+      <div class="msg"><div class="msg-top"><span class="msg-when">1º/12 · Abertura</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">Muitas de vocês me escreveram depois do Mapa do Jardim dizendo a mesma coisa: "sozinha eu esqueço". 🌿 Por isso eu abri a primeira turma do Acesso Diário ao Jardim: 21 dias comigo, com áudio todo dia às 6h, lembrete na viração do dia, 3 encontros ao vivo, o planner e a aula "Como ler a Bíblia sozinha em 15 minutos". Começa em <span class="fill">[7/12]</span>. Investimento: R$ 47. Entre por aqui: <span class="fill">[link]</span></p></div>
+      <div class="msg"><div class="msg-top"><span class="msg-when">3/12 · Prova</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">Olha o que a <span class="fill">[nome]</span> me mandou depois dos 7 dias do guia: "<span class="fill">[depoimento, com autorização]</span>". É isso que eu quero viver com você nos próximos 21 dias. A turma começa <span class="fill">[segunda, 7/12]</span>. <span class="fill">[link]</span></p></div>
+      <div class="msg"><div class="msg-top"><span class="msg-when">5/12 · Dúvidas</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">As perguntas que mais recebi: "E se eu não conseguir todo dia?" A porta de 1 minuto conta, e eu te lembro na viração do dia. "Preciso entender muito de Bíblia?" Não: tem até aula bônus. "Os encontros ficam gravados?" <span class="fill">[sim / não]</span>. Ainda dá tempo: <span class="fill">[link]</span></p></div>
+      <div class="msg"><div class="msg-top"><span class="msg-when">6/12 · Último dia</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">As inscrições da primeira turma fecham hoje, às <span class="fill">[21h]</span>. Amanhã às 6h eu mando o primeiro áudio para quem estiver comigo no Jardim. 💛 <span class="fill">[link]</span></p></div>
+      <div class="msg"><div class="msg-top"><span class="msg-when">7/12 · Depois de fechar</span><button class="copy" type="button">Copiar</button></div><p class="msg-text">A turma começou! Se você não entrou agora, tudo bem: continue usando o seu guia. Eu aviso quando abrir a próxima turma, em <span class="fill">[janeiro]</span>.</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- CONTA -->
+<section id="conta" aria-labelledby="t-conta">
+  <div class="sec-head">
+    <p class="kicker">A conta de pé no chão</p>
+    <h2 id="t-conta">Quanto a primeira turma pode render</h2>
+    <p class="lead">Mexa nos números para ver os cenários. São hipóteses para testar na turma 1: o produto de entrada valida o método, gera depoimentos e forma a lista. O faturamento maior vem da Metamorfose.</p>
+  </div>
+  <div class="calc">
+    <div class="ctrls">
+      <div class="ctrl"><label for="r-down">Pessoas que baixam o guia <output id="o-down">200</output></label><input id="r-down" type="range" min="50" max="1000" step="10" value="200"></div>
+      <div class="ctrl"><label for="r-conv">Compram a turma de R$ 47 <output id="o-conv">10%</output></label><input id="r-conv" type="range" min="2" max="25" step="1" value="10"></div>
+      <div class="ctrl"><label for="r-meta">Seguem para a Metamorfose (R$ 397) <output id="o-meta">30%</output></label><input id="r-meta" type="range" min="5" max="60" step="5" value="30"></div>
+    </div>
+    <div>
+      <div class="funnel">
+        <div class="fbar fb1"><span>Baixam o guia</span><div class="track"><div class="fillbar" id="b1" style="width:100%">200</div></div></div>
+        <div class="fbar fb2"><span>Turma R$ 47</span><div class="track"><div class="fillbar" id="b2" style="width:10%">20</div></div></div>
+        <div class="fbar fb3"><span>Metamorfose</span><div class="track"><div class="fillbar" id="b3" style="width:3%">6</div></div></div>
+      </div>
+      <div class="total">
+        <div><div class="v" id="v-turma">R$ 940</div><div class="l">Turma 1 do Acesso Diário</div></div>
+        <div><div class="v" id="v-meta">R$ 2.382</div><div class="l">Metamorfose, em fevereiro</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="pronto" aria-labelledby="t-pronto">
+  <div class="sec-head">
+    <p class="kicker">Antes de divulgar</p>
+    <h2 id="t-pronto">O que precisa estar pronto</h2>
+    <p class="lead">O guia só começa a circular com o link de pagamento já dentro dele. Assim ninguém chega na última página e encontra um link vazio.</p>
+  </div>
+  <div class="check">
+    <div class="ci"><span class="box"></span><span>Guia revisado (história real, foto, os 7 dias) e salvo em PDF</span><span class="w"><b>25/11</b>Sheila + Delaine</span></div>
+    <div class="ci"><span class="box"></span><span>Produto de R$ 47 na Greenn e uma compra de teste feita</span><span class="w"><b>25/11</b>Delaine</span></div>
+    <div class="ci"><span class="box"></span><span>Vídeo de vendas gravado e no YouTube como não listado</span><span class="w"><b>25/11</b>Sheila</span></div>
+    <div class="ci"><span class="box"></span><span>Link e QR code do vídeo na última página do guia</span><span class="w"><b>25/11</b>Delaine</span></div>
+    <div class="ci"><span class="box"></span><span>Entrega do guia para quem comenta METAMORFOSE testada</span><span class="w"><b>25/11</b>Delaine</span></div>
+    <div class="ci"><span class="box"></span><span>Etiqueta "Jardim · baixou" e lista de transmissão no WhatsApp</span><span class="w"><b>26/11</b>Sheila</span></div>
+    <div class="ci"><span class="box"></span><span>Conteúdo da semana 1 da turma escrito</span><span class="w"><b>01/12</b>Sheila</span></div>
+    <div class="ci"><span class="box"></span><span>Comunidade da turma (Avisos e Conversa) criada</span><span class="w"><b>05/12</b>Delaine</span></div>
+    <div class="ci"><span class="box"></span><span>Áudios e cartões dos dias 1 a 7 gravados</span><span class="w"><b>05/12</b>Sheila + Delaine</span></div>
+  </div>
+  <div class="decide">
+    <h3>Para decidir com a Sheila</h3>
+    <ul>
+      <li>Entrega do guia: à mão nas primeiras semanas ou ManyChat desde o início?</li>
+      <li>Data da turma 1: 7/12 ou só em janeiro.</li>
+      <li>Dia e horário dos encontros ao vivo (não na quarta). Ficam gravados?</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>Preparado por Delaine Nogueira · 18/11/2026 · Números são hipóteses para testar na 1ª turma.</span>
+  <span class="sign">O Jardim é seu, Sheila</span>
+</footer>
+</div>
+
+<script>
+(function(){
+  var all=document.getElementById('copy-all');
+  all.addEventListener('click', function(){
+    var text=[].map.call(document.querySelectorAll('.scene'), function(s){
+      return s.querySelector('.t').textContent+' · '+s.querySelector('.nm').textContent+'\n'+s.querySelector('.msg-text').innerText.trim()+'\n'+s.querySelector('.tela').innerText.trim();
+    }).join('\n\n');
+    function ok(){ all.textContent='Roteiro copiado'; all.classList.add('ok'); setTimeout(function(){all.textContent='Copiar o roteiro inteiro';all.classList.remove('ok');},1800); }
+    function fb(){ var r=document.createRange(); r.selectNodeContents(document.querySelector('.script')); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); all.textContent='Roteiro selecionado'; }
+    try{ navigator.clipboard.writeText(text).then(ok, fb); }catch(e){ fb(); }
+  });
+  document.querySelectorAll('.msg .copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var t = btn.closest('.msg').querySelector('.msg-text');
+      var text = t.innerText.trim();
+      function done(){ btn.textContent='Copiado'; btn.classList.add('ok'); setTimeout(function(){btn.textContent='Copiar';btn.classList.remove('ok');},1600); }
+      function fallback(){ var r=document.createRange(); r.selectNodeContents(t); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Texto selecionado'; setTimeout(function(){btn.textContent='Copiar';},1800); }
+      try{ navigator.clipboard.writeText(text).then(done, fallback); }catch(e){ fallback(); }
+    });
+  });
+
+  var fmt = function(n){ return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); };
+  var down=document.getElementById('r-down'), conv=document.getElementById('r-conv'), meta=document.getElementById('r-meta');
+  function calc(){
+    var d=+down.value, c=+conv.value/100, m=+meta.value/100;
+    var alunas=Math.round(d*c), mm=Math.round(alunas*m);
+    document.getElementById('o-down').textContent=d;
+    document.getElementById('o-conv').textContent=conv.value+'%';
+    document.getElementById('o-meta').textContent=meta.value+'%';
+    var b1=document.getElementById('b1'), b2=document.getElementById('b2'), b3=document.getElementById('b3');
+    b1.textContent=d; b2.textContent=alunas+(alunas===1?' aluna':' alunas'); b3.textContent=mm;
+    b2.style.width=Math.max(c*100,1)+'%'; b3.style.width=Math.max(c*m*100,1)+'%';
+    document.getElementById('v-turma').textContent=fmt(alunas*47);
+    document.getElementById('v-meta').textContent=fmt(mm*397);
+  }
+  [down,conv,meta].forEach(function(el){ el.addEventListener('input', calc); });
+  calc();
+
+  var KEY='jardim-ferramentas', saved={};
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
+  function count(card){
+    var all=card.querySelectorAll('input[type=checkbox]'), on=card.querySelectorAll('input[type=checkbox]:checked');
+    var c=card.querySelector('.tcount'); c.textContent=on.length+' de '+all.length; c.classList.toggle('full', on.length===all.length);
+  }
+  document.querySelectorAll('.tcard').forEach(function(card){
+    card.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+      if(saved[cb.id]) cb.checked=true;
+      cb.addEventListener('change', function(){
+        saved[cb.id]=cb.checked;
+        try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(e){}
+        count(card);
+      });
+    });
+    count(card);
+  });
+})();
+</script>
+
+</body>
+</html>
