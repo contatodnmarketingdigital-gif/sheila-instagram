@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Página do Jardim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: uma coluna de blocos de copy, na ordem da página, cada um com a função e um botão de copiar. No topo, o pedido completo para o Lovable. */
+:root{
+  --bg:#F7F1E7; --surface:#FFFCF6; --creme:#EFE4D2; --line:#E2D4BD; --fg:#3E2C22; --muted:#6F6156;
+  --folha:#4E6B4A; --folha-soft:#E3EADF; --terra:#B5733F; --terra-soft:#F4E2D2; --ouro:#A9802F; --ouro-soft:#F6ECD6; --on-dark:#F5EDE0;
+  --serif:'Cormorant Garamond', Georgia, serif; --sans:'Montserrat', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1D1712; --surface:#271F19; --creme:#30271F; --line:#3E342A; --fg:#F1E7D8; --muted:#B9AB9A;
+  --folha:#8DB087; --folha-soft:#26301F; --terra:#DB9A66; --terra-soft:#3A2719; --ouro:#D8B567; --ouro-soft:#382D17; --on-dark:#1D1712; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1D1712; --surface:#271F19; --creme:#30271F; --line:#3E342A; --fg:#F1E7D8; --muted:#B9AB9A;
+  --folha:#8DB087; --folha-soft:#26301F; --terra:#DB9A66; --terra-soft:#3A2719; --ouro:#D8B567; --ouro-soft:#382D17; --on-dark:#1D1712; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.6;margin:0}
+.wrap{max-width:820px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:40px 56px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,6vw,54px);color:var(--folha)} h2{font-size:28px}
+p{margin:0}
+a{color:var(--terra)}
+.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--terra)}
+.lead{color:var(--muted);margin-top:10px}
+.fill{background:var(--ouro-soft);color:var(--ouro);border-radius:3px;padding:0 3px;font-weight:600}
+.steps{margin:18px 0 0;padding-left:20px;display:grid;gap:4px}
+.prompt{margin-top:22px;background:var(--folha);color:var(--on-dark);border-radius:14px;padding:18px 20px;display:grid;gap:10px}
+.prompt h2{color:var(--on-dark);font-size:24px}
+.prompt p{font-size:14px;opacity:.92}
+.btn{font:700 13px var(--sans);border-radius:99px;padding:9px 16px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--folha);justify-self:start}
+.btn:hover{border-color:var(--folha)}
+.btn:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+.btn.ok{background:var(--terra);color:var(--on-dark);border-color:var(--terra)}
+.prompt .btn{background:var(--on-dark);color:var(--folha);border-color:var(--on-dark)}
+.blocks{display:grid;gap:14px;margin-top:30px}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.bh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bh h3{font-size:22px;display:flex;gap:10px;align-items:baseline}
+.bh .n{font-family:var(--sans);font-size:12px;font-weight:700;width:24px;height:24px;border-radius:50%;background:var(--folha);color:var(--on-dark);display:inline-grid;place-items:center;flex:none}
+.why{font-size:13px;color:var(--muted)}
+.copy{background:var(--creme);border-radius:10px;padding:12px 14px;font-size:14.5px;white-space:pre-line}
+.copy b{font-weight:700}
+footer{margin-top:36px;font-size:13px;color:var(--muted)}
+.estr{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.estr ol{margin:12px 0 0;padding-left:22px;display:grid;gap:4px;font-size:14.5px}
+.estr b{color:var(--folha)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Página do Jardim · link da bio</p>
+  <h1>A copy da página, pronta para o Lovable</h1>
+  <p class="lead">Os textos estão na ordem da página. Comece copiando o pedido completo e colando no Lovable: ele já leva todos os textos. Depois, se quiser trocar uma parte, copie só aquele bloco. Troque o que está <span class="fill">em amarelo</span> pelos seus dados reais antes de publicar.</p>
+  <p class="lead"><a href="./">← Estratégia do Jardim</a> · <a href="checklist.html">Checklist</a> · <a href="lancamento.html">Lançamento</a></p>
+
+  <div class="estr">
+    <h2>A estrutura estratégica</h2>
+    <p class="lead" style="margin-top:6px">Use esta copy como base e adapte com a sua voz. O que não deve mudar é a ordem: cada bloco prepara o próximo, e a leitora sai da dor para o sim.</p>
+    <ol>
+      <li><b>Topo:</b> para quem é e o que ela ganha, com o botão da turma.</li>
+      <li><b>Você se reconhece?</b> A dor, com as palavras dela.</li>
+      <li><b>A virada:</b> não é falta de fé, é falta de horário (Gn 2:15 e 3:8).</li>
+      <li><b>Como funciona:</b> um dia no Jardim, hora a hora.</li>
+      <li><b>O que você recebe:</b> a lista do que está dentro, com o bônus.</li>
+      <li><b>As 3 semanas:</b> o caminho, sem entregar o conteúdo.</li>
+      <li><b>Quem é a Sheila:</b> ela já esteve onde a leitora está.</li>
+      <li><b>Quem já começou:</b> prova real, ou o bloco sai.</li>
+      <li><b>Investimento:</b> preço com motivo e a garantia.</li>
+      <li><b>Perguntas:</b> as dúvidas que seguram a compra.</li>
+      <li><b>Guia grátis:</b> a porta para quem ainda não está pronta.</li>
+      <li><b>Fecho:</b> a grande ideia de novo e o último botão.</li>
+    </ol>
+  </div>
+
+  <ol class="steps">
+    <li>Crie a conta pelo convite: <a href="https://lovable.dev/invite/PRQ179G">lovable.dev/invite/PRQ179G</a>.</li>
+    <li>Toque em "Copiar o pedido completo" e cole na caixa do Lovable.</li>
+    <li>Peça os ajustes no chat, um de cada vez. Ponha a sua foto.</li>
+    <li>Troque os links em amarelo, publique e confira os botões no celular.</li>
+  </ol>
+
+  <div class="prompt">
+    <h2>Pedido completo para o Lovable</h2>
+    <p>Leva as cores, as letras e todos os textos da página. É só colar.</p>
+    <button class="btn" type="button" id="copy-prompt">Copiar o pedido completo</button>
+  </div>
+
+  <div class="blocks" id="blocks">
+
+    <div class="block"><div class="bh"><h3><span class="n">1</span>Topo</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Diz em 5 segundos para quem é e o que ela ganha. O botão principal já leva à turma.</p>
+      <div class="copy">Turma fundadora · começa em <span class="fill">[7 de dezembro]</span>
+
+<b>Não termine o ano sem se aproximar de Deus</b>
+
+21 dias de encontro diário com Deus para a mulher de rotina corrida. Áudio às 6h, lembrete às 19h e companhia para não largar no meio do caminho.
+
+[Botão] Quero entrar na turma · R$ 47
+Ainda não fez o guia grátis? Comece por aqui ↓</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">2</span>Você se reconhece?</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">A leitora se vê na dor dela, com as palavras dela.</p>
+      <div class="copy"><b>Você ama a Deus, mas…</b>
+
+• sente que só consegue estar com Ele no culto;
+• já começou vários devocionais e largou no meio;
+• quando o dia acaba, sobra cansaço e culpa;
+• queria um tempo com Deus que coubesse na vida que você tem hoje.</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">3</span>A virada</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Tira a culpa e apresenta a ideia do Jardim.</p>
+      <div class="copy"><b>Não é falta de fé. É falta de horário.</b>
+
+No Éden, Adão tinha trabalho: Deus o pôs no jardim para cultivar e guardar (Gênesis 2:15). E mesmo assim tinha encontro. Na viração do dia, Deus vinha ao jardim (Gênesis 3:8).
+
+A sua rotina não te tira do Jardim. O que falta é um horário marcado e alguém caminhando com você.</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">4</span>Como funciona</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Mostra o dia a dia: quanto mais concreto, mais fácil dizer sim.</p>
+      <div class="copy"><b>Um dia no Jardim</b>
+
+6h · Chega no seu WhatsApp um áudio meu de 5 minutos, o cartão do dia e uma frase para levar.
+Durante o dia · A frase te lembra para quem você vive.
+19h · Na viração do dia, eu te lembro: se o dia não deixou, o Jardim ainda está aberto.
+Toda semana · Um encontro ao vivo de 40 minutos, para orar e tirar dúvidas.
+
+Corrido? A porta de 1 minuto também é encontro.</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">5</span>O que você recebe</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">A lista do que está dentro, com o bônus por último.</p>
+      <div class="copy"><b>Acesso Diário ao Jardim · 21 dias</b>
+
+✓ 21 áudios de 5 minutos, um por dia, às 6h
+✓ Cartão e frase do dia
+✓ Lembrete diário às 19h
+✓ 3 encontros ao vivo de 40 minutos
+✓ Grupo da turma no WhatsApp
+✓ Planner dos 21 dias
+✓ Bônus: aula "Como ler a Bíblia sozinha em 15 minutos"</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">6</span>As 3 semanas</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Mostra o caminho, sem entregar o conteúdo.</p>
+      <div class="copy"><b>O caminho dos 21 dias</b>
+
+Semana 1 · Cuidar do Jardim: Deus no trabalho, na agenda e nas decisões.
+Semana 2 · Ouvir a voz no Jardim: oração, escuta e discernimento no dia a dia.
+Semana 3 · Florescer: o fruto do encontro diário e a transformação que começa por dentro (Romanos 12:2).</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">7</span>Quem é a Sheila</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Ela já esteve onde a leitora está. Use só fatos reais.</p>
+      <div class="copy"><b>Oi, eu sou a Sheila Nascimento</b>
+
+O meu jardim era um banco de ônibus. Eu comecei os meus devocionais <span class="fill">[indo para o trabalho, às 5 da manhã]</span>. Não era o lugar perfeito, nem a hora perfeita, mas era o meu encontro com Deus.
+
+Hoje <span class="fill">[eu prego e ensino a Palavra para mulheres em …]</span>. E eu criei o Jardim para você ter esse encontro todo dia, mesmo com a vida corrida.</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">8</span>Quem já começou</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Prova. Só depoimento real, com autorização. Sem depoimento, tire este bloco.</p>
+      <div class="copy"><b>Quem já fez o guia</b>
+
+"<span class="fill">[depoimento real, com autorização]</span>" · <span class="fill">[nome]</span>
+"<span class="fill">[depoimento real, com autorização]</span>" · <span class="fill">[nome]</span></div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">9</span>Investimento</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Preço com motivo e o risco invertido pela garantia.</p>
+      <div class="copy"><b>Turma fundadora: R$ 47</b>
+
+Um devocional só em PDF costuma custar de R$ 49,90 a R$ 67. Aqui você tem 21 dias de acompanhamento comigo, com a minha voz todo dia e encontros ao vivo.
+
+Pix ou cartão. E se nos 7 primeiros dias você sentir que não é para você, é só pedir o seu dinheiro de volta.
+
+Inscrições até <span class="fill">[6/12, às 21h]</span> · a turma começa em <span class="fill">[7/12]</span>, às 6h.
+
+[Botão] Quero entrar na turma</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">10</span>Perguntas</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Responde as dúvidas que seguram a compra.</p>
+      <div class="copy"><b>E se eu não conseguir todo dia?</b>
+A porta de 1 minuto conta: uma frase e uma oração já é encontro. Perdeu um dia, segue de onde parou.
+
+<b>Preciso entender muito de Bíblia?</b>
+Não. Tem até uma aula bônus para você aprender a ler sozinha em 15 minutos.
+
+<b>Os encontros ao vivo ficam gravados?</b>
+<span class="fill">[Sim, ficam na área da turma.]</span>
+
+<b>Como eu recebo tudo?</b>
+Depois do pagamento, você recebe o acesso por e-mail e entra no grupo da turma pelo link da área de membros.
+
+<b>Tem garantia?</b>
+Sim, 7 dias. Se não for para você, devolvemos o valor.</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">11</span>Guia grátis</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">Para quem ainda não está pronta para a turma: a porta grátis.</p>
+      <div class="copy"><b>Ainda não está pronta? Comece pelo guia grátis</b>
+
+Guia De volta ao Jardim · 7 dias no seu tempo, com o Mapa do Jardim.
+
+[Botão] Quero o guia grátis → abre o WhatsApp com a mensagem METAMORFOSE</div></div>
+
+    <div class="block"><div class="bh"><h3><span class="n">12</span>Fecho</h3><button class="btn" type="button">Copiar</button></div>
+      <p class="why">A última chamada repete a grande ideia.</p>
+      <div class="copy"><b>O Jardim ainda está aberto</b>
+
+Faltam poucos dias para o ano acabar. Em 21 deles, a gente caminha junto.
+
+[Botão] Quero entrar na turma · R$ 47
+
+Sheila Nascimento · @combresheila</div></div>
+
+  </div>
+  <footer>Preparado por Delaine Nogueira · 18/11/2026 · O que está em amarelo precisa dos dados reais da Sheila.</footer>
+</div>
+
+<script>
+(function(){
+  function copiar(text, btn, label){
+    function ok(){ btn.textContent='Copiado'; btn.classList.add('ok'); setTimeout(function(){ btn.textContent=label; btn.classList.remove('ok'); },1800); }
+    function fb(el){ if(!el) return; var r=document.createRange(); r.selectNodeContents(el); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Texto selecionado'; }
+    try{ navigator.clipboard.writeText(text).then(ok, function(){ fb(btn.closest('.block') ? btn.closest('.block').querySelector('.copy') : document.getElementById('blocks')); }); }
+    catch(e){ fb(btn.closest('.block') ? btn.closest('.block').querySelector('.copy') : document.getElementById('blocks')); }
+  }
+  document.querySelectorAll('.block .btn').forEach(function(b){
+    b.addEventListener('click', function(){ copiar(b.closest('.block').querySelector('.copy').innerText.trim(), b, 'Copiar'); });
+  });
+  var p=document.getElementById('copy-prompt');
+  p.addEventListener('click', function(){
+    var partes=[].map.call(document.querySelectorAll('.block'), function(bl){
+      return '### '+bl.querySelector('h3').innerText.replace(/^\d+\s*/,'').trim()+'\n'+bl.querySelector('.copy').innerText.trim();
+    }).join('\n\n');
+    var pedido='Crie uma página de vendas de uma coluna, pensada primeiro para celular, chamada "Jardim da Sheila".\n'+
+      'Cores: creme #F5EDE0 no fundo, verde-folha #4E6B4A, terracota #B5733F nos botões, dourado #C49A4A nos detalhes e café #3E2C22 no texto. '+
+      'Letras: Cormorant Garamond nos títulos e Montserrat no texto. Visual delicado, com arcos (como a entrada de um jardim), muito espaço em branco e cantos arredondados. '+
+      'No topo, a foto da Sheila dentro de um arco. Todos os botões "Quero entrar na turma" abrem [link da Greenn]. O botão "Quero o guia grátis" abre [link do WhatsApp com a mensagem METAMORFOSE]. '+
+      'Sem formulário e sem cadastro. Use exatamente os textos abaixo, na ordem, um bloco por seção:\n\n'+partes;
+    copiar(pedido, p, 'Copiar o pedido completo');
+  });
+})();
+</script>
+</body>
+</html>
