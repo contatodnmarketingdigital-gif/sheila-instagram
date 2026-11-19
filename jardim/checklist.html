@@ -38,7 +38,13 @@ a{color:var(--folha);font-weight:600;text-decoration:underline;text-underline-of
 .resumo{width:100%;border-collapse:collapse;margin-top:8px;font-size:8.9pt}
 .resumo th{background:var(--folha);color:#fff;text-align:left;font-weight:600;padding:6px 8px;font-size:8pt;letter-spacing:.04em}
 .resumo td{padding:6px 8px;border-bottom:1px solid var(--linha);vertical-align:top}
-.resumo td.b{width:16px} .resumo .bx{display:inline-block;width:11px;height:11px;border:1.4px solid var(--terra);border-radius:2px;margin-top:2px}
+.resumo td.b{width:22px} .resumo .bx{-webkit-appearance:none;appearance:none;display:inline-block;width:15px;height:15px;border:1.6px solid var(--terra);border-radius:3px;margin:1px 0 0;cursor:pointer;position:relative;background:#fff}
+.resumo .bx:checked{background:var(--folha);border-color:var(--folha)}
+.resumo .bx:checked::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.resumo .bx:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+.resumo tr.feito td:not(.b){color:var(--cinza);text-decoration:line-through;text-decoration-color:rgba(110,101,91,.5)}
+.prog{display:inline-block;margin-left:6px;background:var(--folha-soft);color:var(--folha);font-weight:700;border-radius:99px;padding:1px 9px;font-size:8.6pt}
+@media screen{body{max-width:820px;margin:0 auto;padding:16px}.sec{margin-top:28px;border-top:1px solid var(--linha);padding-top:22px}.capa{height:auto;min-height:420px;padding:40px 24px 80px}}
 .resumo td.d{white-space:nowrap;font-weight:600}
 .resumo tr.grp td{background:var(--creme);font-weight:700;font-size:7.6pt;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);padding:5px 8px}
 .resumo tr{page-break-inside:avoid}
@@ -102,28 +108,28 @@ ol.steps{margin:5px 0 4px;padding-left:18px} ol.steps li{margin:2px 0}
 <section class="sec">
   <p class="kicker">Visão de uma página</p>
   <h2>O checklist inteiro</h2>
-  <p class="lead">Marque conforme for fazendo. O detalhe de cada item, com o passo a passo e os tutoriais, vem nas páginas seguintes.</p>
+  <p class="lead">Marque conforme for fazendo: toque na caixinha. <span class="prog" id="prog"></span><br>As marcações ficam salvas neste celular ou computador. O detalhe de cada item, com o passo a passo e os tutoriais, vem logo abaixo.</p>
   <table class="resumo">
     <thead><tr><th></th><th>O que fazer</th><th>Pronto quando</th><th>Até</th></tr></thead>
     <tbody>
       <tr class="grp"><td colspan="4">1 · O guia</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Terminar o guia: história do ônibus, foto e os 7 dias revisados</td><td>Nenhum trecho em amarelo sobrando</td><td class="d">21/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Montar a última página com o convite especial</td><td>Botão do vídeo, QR code e link direto da Greenn no lugar</td><td class="d">25/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Baixar o guia em PDF com os links clicáveis</td><td>Você tocou nos links no celular e eles abriram</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Terminar o guia: história do ônibus, foto e os 7 dias revisados</td><td>Nenhum trecho em amarelo sobrando</td><td class="d">21/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Montar a última página com o convite especial</td><td>Botão do vídeo, QR code e link direto da Greenn no lugar</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Baixar o guia em PDF com os links clicáveis</td><td>Você tocou nos links no celular e eles abriram</td><td class="d">25/11</td></tr>
       <tr class="grp"><td colspan="4">2 · Greenn</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Criar a sua conta na Greenn</td><td>Conta criada, com CPF e conta bancária para saque</td><td class="d">20/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Criar o produto Acesso Diário ao Jardim (R$ 47)</td><td>Produto aprovado, com a descrição pronta</td><td class="d">21/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Montar a área de membros no Greenn Club</td><td>Aula de boas-vindas com vídeo, link do grupo e descrição</td><td class="d">25/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Mandar o link de pagamento para a Delaine</td><td>Link enviado no WhatsApp</td><td class="d">21/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Criar a sua conta na Greenn</td><td>Conta criada, com CPF e conta bancária para saque</td><td class="d">20/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Criar o produto Acesso Diário ao Jardim (R$ 47)</td><td>Produto aprovado, com a descrição pronta</td><td class="d">21/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Montar a área de membros no Greenn Club</td><td>Aula de boas-vindas com vídeo, link do grupo e descrição</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Mandar o link de pagamento para a Delaine</td><td>Link enviado no WhatsApp</td><td class="d">21/11</td></tr>
       <tr class="grp"><td colspan="4">3 · Vídeos e YouTube</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Gravar o vídeo de vendas (o convite, 3 min)</td><td>As 7 cenas gravadas</td><td class="d">23/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Gravar o vídeo de boas-vindas da área de membros</td><td>Vídeo de 1 a 2 minutos gravado</td><td class="d">24/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Subir os dois vídeos no YouTube como não listados</td><td>Links copiados e enviados para a Delaine</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Gravar o vídeo de vendas (o convite, 3 min)</td><td>As 7 cenas gravadas</td><td class="d">23/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Gravar o vídeo de boas-vindas da área de membros</td><td>Vídeo de 1 a 2 minutos gravado</td><td class="d">24/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Subir os dois vídeos no YouTube como não listados</td><td>Links copiados e enviados para a Delaine</td><td class="d">25/11</td></tr>
       <tr class="grp"><td colspan="4">4 · ManyChat e WhatsApp</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Criar a automação METAMORFOSE no ManyChat</td><td>Um comentário de teste recebe o direct sozinho</td><td class="d">25/11</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Preparar o WhatsApp Business para entregar o guia</td><td>Etiqueta, resposta rápida /guia e lista de transmissão</td><td class="d">26/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Criar a automação METAMORFOSE no ManyChat</td><td>Um comentário de teste recebe o direct sozinho</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Preparar o WhatsApp Business para entregar o guia</td><td>Etiqueta, resposta rápida /guia e lista de transmissão</td><td class="d">26/11</td></tr>
       <tr class="grp"><td colspan="4">5 · Teste antes de divulgar</td></tr>
-      <tr><td class="b"><span class="bx"></span></td><td>Fazer o caminho inteiro como se fosse uma aluna</td><td>Comentou, recebeu o guia, viu o vídeo, comprou e entrou no grupo</td><td class="d">25/11</td></tr>
+      <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Fazer o caminho inteiro como se fosse uma aluna</td><td>Comentou, recebeu o guia, viu o vídeo, comprou e entrou no grupo</td><td class="d">25/11</td></tr>
     </tbody>
   </table>
   <p class="nota" style="margin-top:8px">A partir de 26/11 o guia começa a ser divulgado nos Reels, stories e fixado. A turma abre em 1º/12 e começa em [7/12].</p>
@@ -369,14 +375,14 @@ Salva o meu número para receber os lembretes, tá? 💛</div>
     <div class="ph"><span class="pn">12</span><h3>O caminho da aluna, do começo ao fim</h3><span class="ate">até 25/11</span></div>
     <table class="resumo">
       <tbody>
-        <tr><td class="b"><span class="bx"></span></td><td>Comentar METAMORFOSE num post</td><td>Chegou a resposta pública e o direct</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Mandar o número pelo direct</td><td>Chegou o guia no WhatsApp com o /guia</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Abrir o PDF no celular e tocar no botão da última página</td><td>O vídeo de vendas abriu no YouTube</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Tocar no link abaixo do vídeo</td><td>Abriu o checkout da Greenn com R$ 47</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Comprar no Pix</td><td>Chegou o e-mail de acesso da Greenn</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Entrar no Greenn Club</td><td>Vídeo de boas-vindas, link do grupo e planner no lugar</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Tocar no link do grupo</td><td>Entrou na Comunidade da turma</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Pedir o reembolso da compra de teste</td><td>Reembolso solicitado</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Comentar METAMORFOSE num post</td><td>Chegou a resposta pública e o direct</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Mandar o número pelo direct</td><td>Chegou o guia no WhatsApp com o /guia</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Abrir o PDF no celular e tocar no botão da última página</td><td>O vídeo de vendas abriu no YouTube</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Tocar no link abaixo do vídeo</td><td>Abriu o checkout da Greenn com R$ 47</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Comprar no Pix</td><td>Chegou o e-mail de acesso da Greenn</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Entrar no Greenn Club</td><td>Vídeo de boas-vindas, link do grupo e planner no lugar</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Tocar no link do grupo</td><td>Entrou na Comunidade da turma</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Pedir o reembolso da compra de teste</td><td>Reembolso solicitado</td></tr>
       </tbody>
     </table>
     <div class="refs"><div class="ref"><span class="tag o">Ajuda oficial</span><a href="https://greenn.com.br/ajuda/comprei/reembolso/">Como pedir reembolso na Greenn</a></div></div>
@@ -386,11 +392,11 @@ Salva o meu número para receber os lembretes, tá? 💛</div>
     <div class="ph"><span class="pn">✓</span><h3>O que mandar para a Delaine</h3></div>
     <table class="resumo">
       <tbody>
-        <tr><td class="b"><span class="bx"></span></td><td>Link de pagamento da Greenn</td><td class="d">21/11</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Link do vídeo de vendas no YouTube</td><td class="d">25/11</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Link do vídeo de boas-vindas</td><td class="d">25/11</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>Link da área de membros (jardim-da-sheila.greenn.club ou o que você escolher)</td><td class="d">25/11</td></tr>
-        <tr><td class="b"><span class="bx"></span></td><td>O guia final em PDF</td><td class="d">25/11</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Link de pagamento da Greenn</td><td class="d">21/11</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Link do vídeo de vendas no YouTube</td><td class="d">25/11</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Link do vídeo de boas-vindas</td><td class="d">25/11</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>Link da área de membros (jardim-da-sheila.greenn.club ou o que você escolher)</td><td class="d">25/11</td></tr>
+        <tr><td class="b"><input type="checkbox" class="bx" aria-label="Marcar como feito"></td><td>O guia final em PDF</td><td class="d">25/11</td></tr>
       </tbody>
     </table>
   </div>
@@ -401,5 +407,20 @@ Salva o meu número para receber os lembretes, tá? 💛</div>
   </div>
 </section>
 
+<script>
+(function(){
+  var KEY="sheila-checklist-jardim", s={};
+  try{ s=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){}
+  var boxes=[].slice.call(document.querySelectorAll("input.bx")), first=document.querySelector(".resumo");
+  var main=[].slice.call(first.querySelectorAll("input.bx"));
+  function prog(){ var p=document.getElementById("prog"); if(!p) return; var n=main.filter(function(b){return b.checked}).length; p.textContent=n+" de "+main.length+" feitos"; }
+  boxes.forEach(function(b,i){
+    var k="c"+i; b.id=k; var tr=b.closest("tr");
+    if(s[k]){ b.checked=true; tr&&tr.classList.add("feito"); }
+    b.addEventListener("change",function(){ s[k]=b.checked; if(tr) tr.classList.toggle("feito",b.checked); try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){} prog(); });
+  });
+  prog();
+})();
+</script>
 </body>
 </html>
